@@ -52,7 +52,7 @@ st.markdown("""
 # Display logo centered
 col1, col2, col3 = st.columns([1,3,1])
 with col2:
-    st.image("Eastern Trails.png", use_column_width=True)
+    st.image("Dataset and Database/Eastern Trails.png", use_column_width=True)
 
 # Header section with text
 st.markdown('<h1 class="title">Explore the Enchanting North East India</h1>', unsafe_allow_html=True)
