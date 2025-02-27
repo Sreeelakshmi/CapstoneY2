@@ -7,7 +7,7 @@ st.set_page_config(page_title="Eastern Trails", layout="wide")
 header_col1, header_col2, header_col3 = st.columns([1, 3, 1])
 
 with header_col1:
-    st.image("Eastern Trails.png", width=120)
+    st.image("Dataset and Database/Eastern Trails.png", width=120)
 
 with header_col2:
     st.markdown(
