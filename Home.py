@@ -1,50 +1,25 @@
 import streamlit as st
 
-# Set page config
+# Set full-page config
 st.set_page_config(page_title="Eastern Trails", layout="wide")
 
-# Set custom styles for North East India theme with lighter colors and darker text
+# Apply global page style (full green background and dark text)
 st.markdown(
     """
     <style>
         body {
-            background-color: #E6F2E6;  /* Light earthy green */
-            color: #1F2E24;  /* Dark green text */
-            font-family: 'Arial', sans-serif;
+            background-color: #E6F2E6; /* Full-page light green */
         }
         .block-container {
-            background-color: #E6F2E6;
+            background-color: #E6F2E6; /* Keep background consistent */
             padding: 20px;
             border-radius: 10px;
         }
-        .nav-button {
-            display: inline-block;
-            padding: 8px 15px;
-            margin: 5px;
-            background-color: #79AC78; /* Soft green */
-            color: #FFFFFF;
-            border: 1px solid #2E3D34;
-            border-radius: 20px;
-            text-transform: uppercase;
-            font-weight: bold;
-            text-align: center;
-            cursor: pointer;
-        }
-        .nav-button:hover {
-            background-color: #618264;
-        }
         h1, h2, h3, h4, h5, h6, p, label {
-            color: #1F2E24; /* Darker text for readability */
+            color: #1F2E24; /* Dark green text */
+            font-family: Arial, sans-serif;
         }
-        .scrollable-container {
-            max-height: 80vh;
-            overflow-y: auto;
-            padding: 15px;
-            background-color: #FFFFFF;
-            border: 1px solid #79AC78;
-            border-radius: 10px;
-        }
-        .action-button {
+        .travel-button {
             display: inline-block;
             padding: 10px 20px;
             margin: 5px;
@@ -55,7 +30,7 @@ st.markdown(
             border-radius: 20px;
             cursor: pointer;
         }
-        .action-button:hover {
+        .travel-button:hover {
             background-color: #4E6B4F;
         }
     </style>
@@ -63,40 +38,32 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Header Section (with Eastern Trails Logo)
-header_col1, header_col2, header_col3 = st.columns([1, 3, 1])
+# Header Section with Text (instead of buttons)
+col1, col2, col3 = st.columns([1, 3, 1])
 
-with header_col1:
+with col1:
     st.image("Dataset and Database/Eastern Trails.png", width=120)
 
-with header_col2:
+with col2:
     st.markdown(
         """
         <div style="text-align: center;">
-            <span class="nav-button">BLOG</span>
-            <span class="nav-button">CHATBOT</span>
-            <span class="nav-button">GROUP PLANNING</span>
-            <span class="nav-button">SOUVENIRS</span>
-            <span class="nav-button">TOURIST</span>
-            <span class="nav-button">TRAVEL ITINERARY</span>
-            <span class="nav-button">TRIVIA</span>
-            <span class="nav-button">WEATHER</span>
+            <h2>Welcome to Eastern Trails!</h2>
+            <p>Explore the untouched beauty of North East India. Plan your perfect trip with our tools and guides.</p>
         </div>
         """,
         unsafe_allow_html=True
     )
 
-with header_col3:
-    st.write("")
+with col3:
+    st.write("")  # Empty space
 
 st.write("---")
 
-# Scrollable Content Section
-st.markdown('<div class="scrollable-container">', unsafe_allow_html=True)
-
-# Travel Preferences Buttons (Replacing the Checklist)
+# Travel Preferences Section
 st.header("Travel Preferences")
 
+# Travel Preference Buttons
 buttons = [
     "Hotel Booked",
     "Transportation Booked",
@@ -105,8 +72,6 @@ buttons = [
     "Documents Ready"
 ]
 
-button_html = "".join([f'<button class="action-button">{button}</button>' for button in buttons])
+button_html = "".join([f'<button class="travel-button">{button}</button>' for button in buttons])
 
 st.markdown(f'<div style="text-align: center;">{button_html}</div>', unsafe_allow_html=True)
-
-st.markdown('</div>', unsafe_allow_html=True)
