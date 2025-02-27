@@ -56,7 +56,7 @@ seven_sisters_info = {
 }
 
 # Load travel package data
-data_path = 'Seven_Sisters_Travel_Packages.csv'
+data_path = 'Dataset and Database/Seven_Sisters_Travel_Packages_Updated.csv'
 df = pd.read_csv(data_path)
 
 def fetch_package_info(state, family_friendly=None, budget=None):
