@@ -3,13 +3,13 @@ import streamlit as st
 # Set page config
 st.set_page_config(page_title="Eastern Trails", layout="wide")
 
-# Set custom styles for North East India theme with lighter colors
+# Set custom styles for North East India theme with lighter colors and darker text
 st.markdown(
     """
     <style>
         body {
             background-color: #E6F2E6;  /* Light earthy green */
-            color: #2E3D34;  /* Darker green text */
+            color: #1F2E24;  /* Dark green text */
             font-family: 'Arial', sans-serif;
         }
         .block-container {
@@ -33,8 +33,8 @@ st.markdown(
         .nav-button:hover {
             background-color: #618264;
         }
-        h1, h2, h3, h4, h5, h6 {
-            color: #2E3D34;
+        h1, h2, h3, h4, h5, h6, p, label {
+            color: #1F2E24; /* Darker text for readability */
         }
         .scrollable-container {
             max-height: 80vh;
@@ -43,6 +43,20 @@ st.markdown(
             background-color: #FFFFFF;
             border: 1px solid #79AC78;
             border-radius: 10px;
+        }
+        .action-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #618264;
+            color: #FFFFFF;
+            font-weight: bold;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .action-button:hover {
+            background-color: #4E6B4F;
         }
     </style>
     """,
@@ -80,9 +94,10 @@ st.write("---")
 # Scrollable Content Section
 st.markdown('<div class="scrollable-container">', unsafe_allow_html=True)
 
-st.header("Travel Preferences Progress")
+# Travel Preferences Buttons (Replacing the Checklist)
+st.header("Travel Preferences")
 
-options = [
+buttons = [
     "Hotel Booked",
     "Transportation Booked",
     "Activities Planned",
@@ -90,16 +105,8 @@ options = [
     "Documents Ready"
 ]
 
-progress = 0
-total_options = len(options)
+button_html = "".join([f'<button class="action-button">{button}</button>' for button in buttons])
 
-for option in options:
-    if st.checkbox(option, key=option):
-        progress += 1
-
-progress_percentage = (progress / total_options) * 100
-st.progress(progress_percentage / 100)
-
-st.write(f"### Progress: {progress} of {total_options} completed")
+st.markdown(f'<div style="text-align: center;">{button_html}</div>', unsafe_allow_html=True)
 
 st.markdown('</div>', unsafe_allow_html=True)
