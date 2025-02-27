@@ -1,46 +1,37 @@
 import streamlit as st
 
-# Set page title and icon
-st.set_page_config(page_title="Travel Advisor", page_icon="🌍", layout="wide")
+st.set_page_config(page_title="Travel Advisor Home", page_icon="🌍")
 
-# Header
-st.title("🌍 Welcome to Your Travel Advisor")
-st.subheader("Plan your perfect trip with ease and fun!")
+st.title("🌍 Welcome to Travel Advisor")
 
-# Description
-st.write("""
-Explore personalized recommendations, check the weather, get guided itineraries, chat with our AI bot, play travel trivia, and even shop for souvenirs!
-Select a section below to begin your adventure.
-""")
+st.write("Explore various tools and features to make your travel planning fun and easy!")
 
-# Create buttons/links to each module
-col1, col2, col3 = st.columns(3)
+st.header("Explore Sections:")
 
-with col1:
-    if st.button("📅 Travel Itinerary"):
-        st.switch_page("travel_itenary.py")  # Link to travel itinerary page
+if st.button("📅 Travel Itinerary"):
+    st.switch_page("pages/travel_itenary.py")
 
-    if st.button("🤖 Chat with TravelBot"):
-        st.switch_page("chatbot.py")  # Link to chatbot page
+if st.button("🌦️ Weather Forecast"):
+    st.switch_page("pages/weather.py")
 
-    if st.button("🏅 Travel Trivia"):
-        st.switch_page("trivia.py")  # Link to trivia page
+if st.button("💬 Chatbot Assistant"):
+    st.switch_page("pages/chatbot.py")
 
-with col2:
-    if st.button("☀️ Check Weather"):
-        st.switch_page("weather.py")  # Link to weather page
+if st.button("❓ Trivia Game"):
+    st.switch_page("pages/trivia.py")
 
-    if st.button("🗺️ Tourist Guide"):
-        st.switch_page("tourist_guide.py")  # Link to tourist guide page
+if st.button("🗺️ Tourist Guide"):
+    st.switch_page("pages/tourist.py")
 
-    if st.button("🎁 Souvenirs"):
-        st.switch_page("souvenirs.py")  # Link to souvenirs page
+if st.button("🎁 Souvenirs"):
+    st.switch_page("pages/souvenirs.py")
 
-with col3:
-    if st.button("🌟 Recommendations"):
-        st.switch_page("recommendations.py")  # Link to recommendations page
+if st.button("🧩 Group Planning"):
+    st.switch_page("pages/group_planning.py")
 
-# Optional Footer
-st.markdown("---")
-st.write("🚀 Developed with ❤️ for travel enthusiasts")
+if st.button("🎮 Travel Game"):
+    st.switch_page("pages/game.py")
+
+st.write("---")
+st.write("Made with ❤️ using Streamlit")
 
