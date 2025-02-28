@@ -1,9 +1,9 @@
 import streamlit as st
 
-# Set page title and icon
+# Set page configuration
 st.set_page_config(page_title="Eastern Trails", page_icon="🌄", layout="wide")
 
-# Custom CSS for styling the header
+# Custom CSS for styling
 st.markdown(
     """
     <style>
@@ -11,12 +11,12 @@ st.markdown(
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
-            background-color: #E6F2E6;
-            border-bottom: 2px solid #618264;
+            padding: 15px;
+            background-color: #f9f5f0;
+            border-bottom: 2px solid #ddd;
         }
         .logo {
-            height: 80px;
+            height: 70px;
         }
         .button-container {
             display: flex;
@@ -24,7 +24,7 @@ st.markdown(
         }
         .header-button {
             padding: 8px 15px;
-            background-color: #618264;
+            background-color: #6a994e;
             color: white;
             border: none;
             border-radius: 20px;
@@ -32,63 +32,98 @@ st.markdown(
             font-weight: bold;
         }
         .header-button:hover {
-            background-color: #4E6B4F;
+            background-color: #4f7c3f;
+        }
+        .main-title {
+            text-align: center;
+            font-size: 40px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #2f3e46;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 20px;
+            color: #52796f;
+            margin-bottom: 30px;
+        }
+        .section-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .section-card {
+            width: 250px;
+            height: 100px;
+            background-color: #f0ead6;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #3e403f;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        .section-card:hover {
+            background-color: #d6cdbf;
+            transform: translateY(-5px);
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #888;
         }
     </style>
-    """, 
+    """,
     unsafe_allow_html=True
 )
 
-# Header Layout - Logo + Sign In/Sign Up
+# Header with Logo and Sign In/Sign Up
 st.markdown(
     """
     <div class="header-container">
-        <img src="Dataset and Database/logo.png" class="logo">
+        <img src="https://raw.githubusercontent.com/user/repo/main/EasternTrailsLogo.png" class="logo">
         <div class="button-container">
-            <form action="#" method="get">
-                <button class="header-button" type="button" onclick="alert('Sign In clicked!')">Sign In</button>
-            </form>
-            <form action="#" method="get">
-                <button class="header-button" type="button" onclick="alert('Sign Up clicked!')">Sign Up</button>
-            </form>
+            <button class="header-button" onclick="alert('Sign In clicked!')">Sign In</button>
+            <button class="header-button" onclick="alert('Sign Up clicked!')">Sign Up</button>
         </div>
     </div>
     """,
     unsafe_allow_html=True
 )
 
-# Main Title and Subtitle
-st.title("🌄 Eastern Trails")
-st.subheader("Discover the heart of NorthEast India, One Trail at a Time.")
+# Main Title
+st.markdown('<div class="main-title">Eastern Trails</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">Discover the Heart of NorthEast India, One Trail at a Time.</div>', unsafe_allow_html=True)
 
-# Description
-st.write("""
-Explore personalized recommendations, check the weather, get guided itineraries, chat with our AI bot, play travel trivia, and even shop for souvenirs!
-Select a section below to begin your adventure.
-""")
+# Section Buttons (as clickable cards)
+sections = [
+    ("📅 Travel Itinerary", "pages/travel_itinerary.py"),
+    ("🤖 Chat with TravelBot", "pages/chatbot.py"),
+    ("🏅 Travel Trivia", "pages/trivia.py"),
+    ("☀️ Check Weather", "pages/weather.py"),
+    ("🗺️ Tourist Guide", "pages/tourist_guide.py"),
+    ("🎁 Souvenirs", "pages/souvenirs.py"),
+]
 
-# Buttons for navigating to pages
-col1, col2, col3 = st.columns(3)
+st.markdown('<div class="section-container">', unsafe_allow_html=True)
 
-with col1:
-    if st.button("📅 Travel Itinerary"):
-        st.switch_page("pages/travel_itinerary.py")
+for label, page in sections:
+    st.markdown(
+        f"""
+        <div class="section-card" onclick="window.location.href='/{page}'">
+            {label}
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-    if st.button("🤖 Chat with TravelBot"):
-        st.switch_page("pages/chatbot.py")
+st.markdown('</div>', unsafe_allow_html=True)
 
-    if st.button("🏅 Travel Trivia"):
-        st.switch_page("pages/trivia.py")
-
-with col2:
-    if st.button("☀️ Check Weather"):
-        st.switch_page("pages/weather.py")
-
-    if st.button("🗺️ Tourist Guide"):
-        st.switch_page("pages/tourist_guide.py")
-
-    if st.button("🎁 Souvenirs"):
-        st.switch_page("pages/souvenirs.py")
-
-st.markdown("---")
-st.write("🚀 Developed with ❤️ for travel enthusiasts")
+# Footer
+st.markdown('<div class="footer">🚀 Developed with ❤️ for travel enthusiasts</div>', unsafe_allow_html=True)
