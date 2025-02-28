@@ -3,7 +3,7 @@ import streamlit as st
 # Set page config
 st.set_page_config(page_title="Eastern Trails", page_icon="🌄", layout="wide")
 
-# Custom CSS for styling with a light, Northeast India–inspired theme
+# Custom CSS for a light Northeast India–inspired theme
 st.markdown(
     """
     <style>
@@ -53,8 +53,8 @@ st.markdown(
         color: #2F3E46;
         margin: 20px 0;
       }
-      /* Styling for Streamlit buttons as cards */
-      .stButton>button {
+      /* Card button styling (using Streamlit buttons) */
+      .stButton>button.card-button {
          font-size: 16px;
          height: 150px;
          width: 250px;
@@ -63,22 +63,30 @@ st.markdown(
          border-radius: 15px;
          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
          transition: transform 0.3s, box-shadow 0.3s;
-         margin-bottom: 20px;
          white-space: pre-line;
+         text-align: center;
       }
-      .stButton>button:hover {
+      .stButton>button.card-button:hover {
          transform: translateY(-5px);
          box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      }
+      /* Grid container for cards */
+      .card-grid {
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: center;
+         gap: 20px;
+         margin: 20px;
       }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Header Section: Logo, Title, and Auth Buttons
+# Header Section: Logo, Title, Subtitle, and Auth Buttons
 with st.container():
-    col_logo, col_auth = st.columns([0.7, 0.3])
-    with col_logo:
+    col_header_left, col_header_right = st.columns([0.7, 0.3])
+    with col_header_left:
         st.markdown(
             """
             <div class="title-container">
@@ -88,7 +96,7 @@ with st.container():
             """,
             unsafe_allow_html=True
         )
-    with col_auth:
+    with col_header_right:
         col_btn1, col_btn2 = st.columns(2)
         with col_btn1:
             if st.button("Sign In", key="signin"):
@@ -101,9 +109,11 @@ with st.container():
 st.markdown('<div class="subtitle">Discover the Heart of NorthEast India, One Trail at a Time.</div>', unsafe_allow_html=True)
 st.markdown("---")
 
+# Feature Cards Section
+st.markdown("### Explore Our Features")
 # Define card data: (Icon, Title, Description, Page filename)
 cards = [
-    ("📅", "Travel Itinerary", "Plan your trip with customizable itineraries.", "travel_itinerary.py"),
+    ("📅", "Travel Itinerary", "Plan your complete trip with customizable itineraries.", "travel_itinerary.py"),
     ("🤖", "Chatbot", "Get AI-powered travel recommendations.", "chatbot.py"),
     ("🏅", "Trivia", "Test your travel knowledge with fun quizzes.", "trivia.py"),
     ("☀️", "Weather", "Stay informed with real-time weather updates.", "weather.py"),
@@ -111,10 +121,9 @@ cards = [
     ("🎁", "Souvenirs", "Find and shop for authentic regional souvenirs.", "souvenirs.py"),
     ("👥", "Group Planning", "Plan trips with your friends.", "group_planning.py"),
     ("📝", "Blog", "Read travel stories and tips.", "blog.py"),
-   
+    ("🎮", "Game", "Enjoy interactive travel games.", "game.py")
 ]
 
-st.markdown("### Explore Our Features")
 # Arrange cards in a 3x3 grid using a loop with st.columns(3)
 for i in range(0, len(cards), 3):
     cols = st.columns(3)
@@ -122,10 +131,11 @@ for i in range(0, len(cards), 3):
         index = i + j
         if index < len(cards):
             icon, title, description, page = cards[index]
-            # Combine icon, title, and description with line breaks for readability
+            # Combine icon, title, and description with line breaks
             button_label = f"{icon} {title}\n\n{description}"
             with col:
-                if st.button(button_label, key=title):
+                if st.button(button_label, key=title, help=f"Go to {title} page", 
+                             css_class="card-button"):
                     st.switch_page(f"pages/{page}")
 
 # Footer
