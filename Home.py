@@ -43,7 +43,7 @@ st.markdown(
 st.markdown(
     """
     <div class="header-container">
-        <img src="https://raw.githubusercontent.com/user/repo/main/Dataset and Database/logo.png" class="logo">
+        <img src="Dataset and Database/logo.png" class="logo">
         <div class="button-container">
             <form action="#" method="get">
                 <button class="header-button" type="button" onclick="alert('Sign In clicked!')">Sign In</button>
