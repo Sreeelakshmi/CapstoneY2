@@ -70,7 +70,7 @@ with st.container():
         """
         <div class="header">
             <div class="title-container">
-                <img src="Dataset and Database/eastern_trails_logo.png" class="logo">
+                <img src="Dataset and Database/logo.png" class="logo">
                 <span class="title">Eastern Trails</span>
             </div>
         </div>
