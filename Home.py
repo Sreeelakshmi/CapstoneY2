@@ -3,7 +3,7 @@ import streamlit as st
 # Set page config
 st.set_page_config(page_title="Eastern Trails", page_icon="🌄", layout="wide")
 
-# Custom CSS for styling with a light, Northeast India–inspired theme
+# Custom CSS for a light, Northeast India–inspired theme
 st.markdown(
     """
     <style>
@@ -63,11 +63,10 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-##############################
-# HEADER: Logo & Title Only #
-##############################
+#########################
+# HEADER: Logo & Title  #
+#########################
 with st.container():
-    # Create a single row for the header
     st.markdown(
         """
         <div class="header">
@@ -84,16 +83,13 @@ with st.container():
 st.markdown('<div class="subtitle">Discover the Heart of NorthEast India, One Trail at a Time.</div>', unsafe_allow_html=True)
 st.markdown("---")
 
-############################################
-# Feature Cards (Including Sign In/Sign Up)#
-############################################
+######################################
+# Feature Cards (No Sign In/Sign Up) #
+######################################
 st.markdown("### Explore Our Features")
 
-# Card data: (Icon, Title, Description, Key)
-# For "Sign In" and "Sign Up", we won't do page navigation; we'll just show a message.
+# Card data: (Icon, Title, Description, Page filename)
 cards = [
-    ("🔑", "Sign In", "Access your account or manage your trips.", "signin"),
-    ("🆕", "Sign Up", "Create a new account to plan your adventures!", "signup"),
     ("📅", "Travel Itinerary", "Plan your trip with customizable itineraries.", "travel_itinerary.py"),
     ("🤖", "Chatbot", "Get AI-powered travel recommendations.", "chatbot.py"),
     ("🏅", "Trivia", "Test your travel knowledge with fun quizzes.", "trivia.py"),
@@ -102,27 +98,20 @@ cards = [
     ("🎁", "Souvenirs", "Find and shop for authentic regional souvenirs.", "souvenirs.py"),
     ("👥", "Group Planning", "Plan trips with your friends.", "group_planning.py"),
     ("📝", "Blog", "Read travel stories and tips.", "blog.py"),
-    ("🎮", "Game", "Enjoy interactive travel games.", "game.py"),
+    ("🎮", "Game", "Enjoy interactive travel games.", "game.py")
 ]
 
-# We'll arrange them in rows of 3 columns each
+# Arrange cards in rows of 3 columns
 for i in range(0, len(cards), 3):
     cols = st.columns(3)
     for j, col in enumerate(cols):
         idx = i + j
         if idx < len(cards):
-            icon, title, description, page_key = cards[idx]
-            # Multiline label for the card
+            icon, title, description, page = cards[idx]
             button_label = f"{icon} {title}\n\n{description}"
             with col:
-                # If it's "Sign In" or "Sign Up", show an info message, else switch page
                 if st.button(button_label, key=title):
-                    if page_key == "signin":
-                        st.info("Sign In clicked!")
-                    elif page_key == "signup":
-                        st.info("Sign Up clicked!")
-                    else:
-                        st.switch_page(f"pages/{page_key}")
+                    st.switch_page(f"pages/{page}")
 
 # FOOTER
 st.markdown("---")
