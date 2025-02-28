@@ -1,77 +1,113 @@
 import streamlit as st
 
-# Set full-page config
-st.set_page_config(page_title="Eastern Trails", layout="wide")
+# Set page config
+st.set_page_config(page_title="Eastern Trails - Travel Advisor", layout="wide")
 
-# Apply global page style (full green background and dark text)
-st.markdown(
-    """
+# Custom CSS for colors and styling
+st.markdown("""
     <style>
         body {
-            background-color: #E6F2E6; /* Full-page light green */
+            background-color: #f5f5f5;
         }
-        .block-container {
-            background-color: #E6F2E6; /* Keep background consistent */
-            padding: 20px;
-            border-radius: 10px;
-        }
-        h1, h2, h3, h4, h5, h6, p, label {
-            color: #1F2E24; /* Dark green text */
-            font-family: Arial, sans-serif;
-        }
-        .travel-button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 5px;
-            background-color: #618264;
-            color: #FFFFFF;
+        .main-title {
+            font-size: 45px;
             font-weight: bold;
+            color: #2f4858; /* Deep Blue */
+            text-align: center;
+            margin-top: 10px;
+        }
+        .sub-title {
+            font-size: 20px;
+            color: #4f7942; /* Forest Green */
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .button {
+            background-color: #f4a261; /* Warm Orange */
+            color: white;
             border: none;
-            border-radius: 20px;
+            padding: 12px 30px;
+            text-align: center;
+            font-size: 16px;
+            border-radius: 5px;
+            margin: 10px;
             cursor: pointer;
         }
-        .travel-button:hover {
-            background-color: #4E6B4F;
+        .button:hover {
+            background-color: #e76f51; /* Reddish-Orange */
+        }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 30px;
+            background-color: #2f4858; /* Deep Blue */
+            color: white;
+        }
+        .top-bar img {
+            height: 60px;
+        }
+        .top-bar button {
+            background-color: #f4a261;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin-left: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .feature-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
         }
     </style>
-    """,
-    unsafe_allow_html=True
-)
+""", unsafe_allow_html=True)
 
-# Header Section with Text (instead of buttons)
-col1, col2, col3 = st.columns([1, 3, 1])
-
+# Top Bar with Logo and Sign In / Login
+col1, col2 = st.columns([0.7, 0.3])
 with col1:
-    st.image("Dataset and Database/Eastern Trails.png", width=120)
-
+    st.image("Bown and Yellow Vintage Adventure logo (3).png", width=100)  # Logo you uploaded
 with col2:
-    st.markdown(
-        """
-        <div style="text-align: center;">
-            <h2>Welcome to Eastern Trails!</h2>
-            <p>Explore the untouched beauty of North East India. Plan your perfect trip with our tools and guides.</p>
+    st.write("""
+        <div class="top-bar">
+            <div>
+                <button onclick="alert('Sign In clicked')">Sign In</button>
+                <button onclick="alert('Login clicked')">Login</button>
+            </div>
         </div>
-        """,
-        unsafe_allow_html=True
-    )
+    """, unsafe_allow_html=True)
 
-with col3:
-    st.write("")  # Empty space
+# Title and Subtitle
+st.markdown('<div class="main-title">Welcome to Eastern Trails</div>', unsafe_allow_html=True)
+st.markdown('<div class="sub-title">One Trail at a Time - Explore the Beauty of North East India</div>', unsafe_allow_html=True)
 
-st.write("---")
+# Feature Buttons
+st.markdown('<div class="feature-container">', unsafe_allow_html=True)
 
-# Travel Preferences Section
-st.header("Travel Preferences")
-
-# Travel Preference Buttons
-buttons = [
-    "Hotel Booked",
-    "Transportation Booked",
-    "Activities Planned",
-    "Travel Insurance Purchased",
-    "Documents Ready"
+features = [
+    ("Travel Itinerary", "travel_itenary.py"),
+    ("Tourist Attractions", "tourist.py"),
+    ("Weather Info", "weather.py"),
+    ("Group Planning", "group_planning.py"),
+    ("Chatbot Assistance", "chatbot.py"),
+    ("Travel Blog", "blog.py"),
+    ("Travel Trivia", "trivia.py"),
+    ("Fun Games", "game.py"),
+    ("Souvenir Guide", "souvenirs.py")
 ]
 
-button_html = "".join([f'<button class="travel-button">{button}</button>' for button in buttons])
+for feature, file in features:
+    st.write(f"""
+        <a href="/{file}" target="_self">
+            <button class="button">{feature}</button>
+        </a>
+    """, unsafe_allow_html=True)
 
-st.markdown(f'<div style="text-align: center;">{button_html}</div>', unsafe_allow_html=True)
+st.markdown('</div>', unsafe_allow_html=True)
+
+# Footer
+st.write("---")
+st.write("🌏 Crafted with ❤️ for Travel Enthusiasts | Explore North East India")
+
