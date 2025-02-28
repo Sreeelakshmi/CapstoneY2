@@ -94,7 +94,7 @@ features = [
     ("Chatbot Assistance", "chatbot.py"),
     ("Travel Blog", "blog.py"),
     ("Travel Trivia", "trivia.py"),
-    ("Fun Games", "game.py"),
+    
     ("Souvenir Guide", "souvenirs.py")
 ]
 
