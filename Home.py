@@ -136,7 +136,7 @@ cards = [
     ("🎁", "Souvenirs", "Find and shop for authentic regional souvenirs.", "souvenirs.py"),
     ("👥", "Group Planning", "Plan trips with your friends.", "group_planning.py"),
     ("📝", "Blog", "Read travel stories and tips.", "blog.py"),
-    
+]
 
 st.markdown("### Explore Our Features")
 st.markdown('<div class="card-grid">', unsafe_allow_html=True)
