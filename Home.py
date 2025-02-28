@@ -1,9 +1,9 @@
 import streamlit as st
 
-# Set page config
+# Set page configuration
 st.set_page_config(page_title="Eastern Trails", page_icon="🌄", layout="wide")
 
-# Custom CSS for better layout
+# Custom CSS for cleaner layout
 st.markdown(
     """
     <style>
@@ -11,8 +11,8 @@ st.markdown(
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
-            background-color: #f0f0f0;
+            padding: 15px 20px;
+            background-color: #f5f5f5;
             border-bottom: 2px solid #ddd;
         }
         .title-container {
@@ -21,7 +21,7 @@ st.markdown(
             gap: 15px;
         }
         .header-logo {
-            height: 60px;
+            height: 50px;
         }
         .header-title {
             font-size: 28px;
@@ -41,34 +41,38 @@ st.markdown(
         .header-buttons button:hover {
             background-color: #52796f;
         }
-        .card {
-            background-color: #f9f9f9;
+        .feature-card {
+            background-color: #ffffff;
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
             text-align: center;
-            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
-        .card:hover {
+        .feature-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 6px 15px rgba(0,0,0,0.15);
         }
-        .card h3 {
-            margin: 10px 0;
-            font-size: 20px;
+        .feature-card h3 {
+            margin: 0;
+            font-size: 18px;
             color: #2f3e46;
         }
-        .card p {
-            color: #555;
+        .feature-card p {
+            margin: 5px 0 0;
             font-size: 14px;
+            color: #555;
         }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Header
+# Header Section
 with st.container():
     col1, col2 = st.columns([0.7, 0.3])
 
@@ -84,7 +88,7 @@ with st.container():
         )
 
     with col2:
-        col_btn1, col_btn2 = st.columns([1, 1])
+        col_btn1, col_btn2 = st.columns(2)
         with col_btn1:
             if st.button("Sign In"):
                 st.write("Sign In clicked!")
@@ -93,41 +97,73 @@ with st.container():
                 st.write("Sign Up clicked!")
 
 # Subtitle
-st.markdown("""
-## Discover the Heart of NorthEast India, One Trail at a Time.
-""")
-
+st.markdown("## 🌄 Discover the Heart of NorthEast India, One Trail at a Time.")
 st.markdown("---")
 
-# Section cards (responsive layout)
-st.markdown("### Explore Our Features")
+# Features Section
+st.markdown("### 🌟 Explore Our Features")
 
+# Feature Cards (Using page_link for navigation)
 col1, col2, col3 = st.columns(3)
 
-def card(icon, title, description, page):
-    if st.markdown(
-        f"""
-        <div class="card" onclick="window.location.href='/{page}'">
-            <h3>{icon} {title}</h3>
-            <p>{description}</p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    ):
-        st.switch_page(f"pages/{page}")
-
 with col1:
-    card("📅", "Travel Itinerary", "Plan your complete trip with customizable itineraries.", "travel_itinerary.py")
-    card("🤖", "Chat with TravelBot", "Get AI-powered recommendations and answers.", "chatbot.py")
+    st.markdown(
+        """
+        <div class="feature-card">
+            <h3>📅 Travel Itinerary</h3>
+            <p>Plan your complete trip with customizable itineraries.</p>
+        </div>
+        """, unsafe_allow_html=True)
+    st.page_link("pages/travel_itinerary.py", label="Go to Itinerary", icon="📅")
+
+    st.markdown(
+        """
+        <div class="feature-card">
+            <h3>🤖 Chat with TravelBot</h3>
+            <p>Get AI-powered travel recommendations.</p>
+        </div>
+        """, unsafe_allow_html=True)
+    st.page_link("pages/chatbot.py", label="Go to Chatbot", icon="🤖")
 
 with col2:
-    card("☀️", "Check Weather", "Stay informed with real-time weather updates.", "weather.py")
-    card("🗺️", "Tourist Guide", "Explore must-visit attractions and hidden gems.", "tourist_guide.py")
+    st.markdown(
+        """
+        <div class="feature-card">
+            <h3>☀️ Check Weather</h3>
+            <p>Stay informed with real-time weather updates.</p>
+        </div>
+        """, unsafe_allow_html=True)
+    st.page_link("pages/weather.py", label="Go to Weather", icon="☀️")
+
+    st.markdown(
+        """
+        <div class="feature-card">
+            <h3>🗺️ Tourist Guide</h3>
+            <p>Explore must-visit attractions and hidden gems.</p>
+        </div>
+        """, unsafe_allow_html=True)
+    st.page_link("pages/tourist_guide.py", label="Go to Tourist Guide", icon="🗺️")
 
 with col3:
-    card("🏅", "Travel Trivia", "Test your travel knowledge with fun quizzes.", "trivia.py")
-    card("🎁", "Souvenirs", "Find and shop for authentic regional souvenirs.", "souvenirs.py")
+    st.markdown(
+        """
+        <div class="feature-card">
+            <h3>🏅 Travel Trivia</h3>
+            <p>Test your knowledge with fun travel quizzes.</p>
+        </div>
+        """, unsafe_allow_html=True)
+    st.page_link("pages/trivia.py", label="Go to Trivia", icon="🏅")
+
+    st.markdown(
+        """
+        <div class="feature-card">
+            <h3>🎁 Souvenirs</h3>
+            <p>Find and shop for authentic regional souvenirs.</p>
+        </div>
+        """, unsafe_allow_html=True)
+    st.page_link("pages/souvenirs.py", label="Go to Souvenirs", icon="🎁")
 
 # Footer
 st.markdown("---")
 st.write("🚀 Developed with ❤️ for travel enthusiasts")
+
