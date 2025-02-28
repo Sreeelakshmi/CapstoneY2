@@ -3,7 +3,7 @@ import streamlit as st
 # Set page config
 st.set_page_config(page_title="Eastern Trails", page_icon="🌄", layout="wide")
 
-# Custom CSS for styling with a light theme inspired by NorthEast India
+# Custom CSS for styling with a light, Northeast India–inspired theme
 st.markdown(
     """
     <style>
@@ -13,7 +13,7 @@ st.markdown(
       }
       /* Header styling */
       .header {
-        background-color: #F5F5DC;  /* Off-white, reminiscent of traditional textiles */
+        background-color: #F5F5DC;  /* Off-white reminiscent of traditional textiles */
         padding: 15px 20px;
         border-bottom: 2px solid #ddd;
         display: flex;
@@ -53,40 +53,22 @@ st.markdown(
         color: #2F3E46;
         margin: 20px 0;
       }
-      /* Card styling */
-      .card-link {
-        text-decoration: none;
+      /* Styling for Streamlit buttons as cards */
+      .stButton>button {
+         font-size: 16px;
+         height: 150px;
+         width: 250px;
+         background-color: #FFF8E7;  /* Soft warm cream */
+         border: none;
+         border-radius: 15px;
+         box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+         transition: transform 0.3s, box-shadow 0.3s;
+         margin-bottom: 20px;
+         white-space: pre-line;
       }
-      .card {
-        background-color: #FFF8E7;  /* Soft, warm cream */
-        width: 250px;
-        padding: 20px;
-        border-radius: 15px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        text-align: center;
-        transition: transform 0.3s, box-shadow 0.3s;
-        margin-bottom: 20px;
-      }
-      .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-      }
-      .card h3 {
-        margin: 0;
-        font-size: 20px;
-        color: #2F3E46;
-      }
-      .card p {
-        margin: 10px 0 0;
-        font-size: 14px;
-        color: #555;
-      }
-      /* Grid container for cards */
-      .card-grid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
+      .stButton>button:hover {
+         transform: translateY(-5px);
+         box-shadow: 0 6px 15px rgba(0,0,0,0.2);
       }
     </style>
     """,
@@ -94,41 +76,34 @@ st.markdown(
 )
 
 # Header Section: Logo, Title, and Auth Buttons
-st.markdown(
-    """
-    <div class="header">
-      <div class="title-container">
-        <img src="Dataset and Database/eastern_trails_logo.png" class="logo">
-        <span class="title">Eastern Trails</span>
-      </div>
-      <div class="auth-buttons">
-        <button onclick="window.location.href='?auth=signin'">Sign In</button>
-        <button onclick="window.location.href='?auth=signup'">Sign Up</button>
-      </div>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+with st.container():
+    col_logo, col_auth = st.columns([0.7, 0.3])
+    with col_logo:
+        st.markdown(
+            """
+            <div class="title-container">
+              <img src="Dataset and Database/eastern_trails_logo.png" class="logo">
+              <span class="title">Eastern Trails</span>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+    with col_auth:
+        col_btn1, col_btn2 = st.columns(2)
+        with col_btn1:
+            if st.button("Sign In", key="signin"):
+                st.info("Sign In clicked!")
+        with col_btn2:
+            if st.button("Sign Up", key="signup"):
+                st.info("Sign Up clicked!")
 
 # Subtitle
 st.markdown('<div class="subtitle">Discover the Heart of NorthEast India, One Trail at a Time.</div>', unsafe_allow_html=True)
 st.markdown("---")
 
-# Function to create a clickable card that opens in the same window
-def clickable_card(icon, title, description, page):
-    card_html = f"""
-    <a class="card-link" href="?page=pages/{page}" target="_self">
-      <div class="card">
-         <h3>{icon} {title}</h3>
-         <p>{description}</p>
-      </div>
-    </a>
-    """
-    st.markdown(card_html, unsafe_allow_html=True)
-
-# List of cards (9 total) - arranged in a 3x3 grid
+# Define card data: (Icon, Title, Description, Page filename)
 cards = [
-    ("📅", "Travel Itinerary", "Plan your complete trip with customizable itineraries.", "travel_itinerary.py"),
+    ("📅", "Travel Itinerary", "Plan your trip with customizable itineraries.", "travel_itinerary.py"),
     ("🤖", "Chatbot", "Get AI-powered travel recommendations.", "chatbot.py"),
     ("🏅", "Trivia", "Test your travel knowledge with fun quizzes.", "trivia.py"),
     ("☀️", "Weather", "Stay informed with real-time weather updates.", "weather.py"),
@@ -136,22 +111,22 @@ cards = [
     ("🎁", "Souvenirs", "Find and shop for authentic regional souvenirs.", "souvenirs.py"),
     ("👥", "Group Planning", "Plan trips with your friends.", "group_planning.py"),
     ("📝", "Blog", "Read travel stories and tips.", "blog.py"),
+   
 ]
 
 st.markdown("### Explore Our Features")
-st.markdown('<div class="card-grid">', unsafe_allow_html=True)
-
-# Arrange cards in a 3x3 grid
+# Arrange cards in a 3x3 grid using a loop with st.columns(3)
 for i in range(0, len(cards), 3):
     cols = st.columns(3)
     for j, col in enumerate(cols):
         index = i + j
         if index < len(cards):
             icon, title, description, page = cards[index]
+            # Combine icon, title, and description with line breaks for readability
+            button_label = f"{icon} {title}\n\n{description}"
             with col:
-                clickable_card(icon, title, description, page)
-
-st.markdown('</div>', unsafe_allow_html=True)
+                if st.button(button_label, key=title):
+                    st.switch_page(f"pages/{page}")
 
 # Footer
 st.markdown("---")
