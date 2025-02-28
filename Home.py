@@ -1,6 +1,6 @@
 import streamlit as st
 
-# Set page config
+# Set page configuration
 st.set_page_config(page_title="Eastern Trails", page_icon="🌄", layout="wide")
 
 # Custom CSS for a light, Northeast India–inspired theme
@@ -53,7 +53,7 @@ st.markdown(
         color: #2F3E46;
         margin: 20px 0;
       }
-      /* Styling for Streamlit buttons as cards */
+      /* Styling for feature cards using Streamlit buttons */
       .stButton>button {
          font-size: 16px;
          height: 150px;
@@ -70,7 +70,7 @@ st.markdown(
          transform: translateY(-5px);
          box-shadow: 0 6px 15px rgba(0,0,0,0.2);
       }
-      /* Grid container for cards */
+      /* Grid container for feature cards */
       .card-grid {
          display: flex;
          flex-wrap: wrap;
@@ -83,7 +83,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Header Section: Logo, Title, and Auth Buttons
+# HEADER SECTION: Logo, Title, and Auth Buttons
 with st.container():
     col_header_left, col_header_right = st.columns([0.7, 0.3])
     with col_header_left:
@@ -105,14 +105,14 @@ with st.container():
             if st.button("Sign Up", key="signup"):
                 st.info("Sign Up clicked!")
 
-# Subtitle
+# SUBTITLE
 st.markdown('<div class="subtitle">Discover the Heart of NorthEast India, One Trail at a Time.</div>', unsafe_allow_html=True)
 st.markdown("---")
 
-# Feature Cards Section
+# FEATURE CARDS SECTION
 st.markdown("### Explore Our Features")
 
-# Define card data: (Icon, Title, Description, Page filename)
+# Define card data as a list of tuples: (Icon, Title, Description, Page filename)
 cards = [
     ("📅", "Travel Itinerary", "Plan your complete trip with customizable itineraries.", "travel_itinerary.py"),
     ("🤖", "Chatbot", "Get AI-powered travel recommendations.", "chatbot.py"),
@@ -137,6 +137,6 @@ for i in range(0, len(cards), 3):
                 if st.button(button_label, key=title, help=f"Go to {title} page"):
                     st.switch_page(f"pages/{page}")
 
-# Footer
+# FOOTER
 st.markdown("---")
 st.write("🚀 Developed with ❤️ for travel enthusiasts")
