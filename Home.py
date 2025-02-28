@@ -93,7 +93,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Header Section: Logo, Title, Subtitle, and Auth Buttons
+# Header Section: Logo, Title, and Auth Buttons
 st.markdown(
     """
     <div class="header">
@@ -110,13 +110,14 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Subtitle
 st.markdown('<div class="subtitle">Discover the Heart of NorthEast India, One Trail at a Time.</div>', unsafe_allow_html=True)
 st.markdown("---")
 
-# Function to create a clickable card
+# Function to create a clickable card that opens in the same window
 def clickable_card(icon, title, description, page):
     card_html = f"""
-    <a class="card-link" href="/?page=pages/{page}">
+    <a class="card-link" href="?page=pages/{page}" target="_self">
       <div class="card">
          <h3>{icon} {title}</h3>
          <p>{description}</p>
@@ -135,12 +136,12 @@ cards = [
     ("🎁", "Souvenirs", "Find and shop for authentic regional souvenirs.", "souvenirs.py"),
     ("👥", "Group Planning", "Plan trips with your friends.", "group_planning.py"),
     ("📝", "Blog", "Read travel stories and tips.", "blog.py"),
-    ("🎮", "Game", "Enjoy interactive travel games.", "game.py")
-]
+    
 
 st.markdown("### Explore Our Features")
+st.markdown('<div class="card-grid">', unsafe_allow_html=True)
+
 # Arrange cards in a 3x3 grid
-# We'll use a loop to create rows with 3 columns each.
 for i in range(0, len(cards), 3):
     cols = st.columns(3)
     for j, col in enumerate(cols):
@@ -150,5 +151,8 @@ for i in range(0, len(cards), 3):
             with col:
                 clickable_card(icon, title, description, page)
 
+st.markdown('</div>', unsafe_allow_html=True)
+
+# Footer
 st.markdown("---")
 st.write("🚀 Developed with ❤️ for travel enthusiasts")
