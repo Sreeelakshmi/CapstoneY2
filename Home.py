@@ -1,113 +1,46 @@
 import streamlit as st
 
-# Set page config
-st.set_page_config(page_title="Eastern Trails - Travel Advisor", layout="wide")
+# Set page title and icon
+st.set_page_config(page_title="Travel Advisor", page_icon="🌍", layout="wide")
 
-# Custom CSS for colors and styling
-st.markdown("""
-    <style>
-        body {
-            background-color: #f5f5f5;
-        }
-        .main-title {
-            font-size: 45px;
-            font-weight: bold;
-            color: #2f4858; /* Deep Blue */
-            text-align: center;
-            margin-top: 10px;
-        }
-        .sub-title {
-            font-size: 20px;
-            color: #4f7942; /* Forest Green */
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .button {
-            background-color: #f4a261; /* Warm Orange */
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            text-align: center;
-            font-size: 16px;
-            border-radius: 5px;
-            margin: 10px;
-            cursor: pointer;
-        }
-        .button:hover {
-            background-color: #e76f51; /* Reddish-Orange */
-        }
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 30px;
-            background-color: #2f4858; /* Deep Blue */
-            color: white;
-        }
-        .top-bar img {
-            height: 60px;
-        }
-        .top-bar button {
-            background-color: #f4a261;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            margin-left: 10px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .feature-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 30px;
-        }
-    </style>
-""", unsafe_allow_html=True)
+# Header
+st.title("🌍 Welcome to Your Travel Advisor")
+st.subheader("Plan your perfect trip with ease and fun!")
 
-# Top Bar with Logo and Sign In / Login
-col1, col2 = st.columns([0.7, 0.3])
+# Description
+st.write("""
+Explore personalized recommendations, check the weather, get guided itineraries, chat with our AI bot, play travel trivia, and even shop for souvenirs!
+Select a section below to begin your adventure.
+""")
+
+# Create buttons/links to each module
+col1, col2, col3 = st.columns(3)
+
 with col1:
-    st.image("Dataset and Database/logo.png", width=100)  # Logo you uploaded
+    if st.button("📅 Travel Itinerary"):
+        st.switch_page("pages/travel_itinerary.py")  # Link to travel itinerary page
+
+    if st.button("🤖 Chat with TravelBot"):
+        st.switch_page("pages/chatbot.py")  # Link to chatbot page
+
+    if st.button("🏅 Travel Trivia"):
+        st.switch_page("pages/trivia.py")  # Link to trivia page
+
 with col2:
-    st.write("""
-        <div class="top-bar">
-            <div>
-                <button onclick="alert('Sign In clicked')">Sign In</button>
-                <button onclick="alert('Login clicked')">Login</button>
-            </div>
-        </div>
-    """, unsafe_allow_html=True)
+    if st.button("☀️ Check Weather"):
+        st.switch_page("pages/weather.py")  # Link to weather page
 
-# Title and Subtitle
-st.markdown('<div class="main-title">Welcome to Eastern Trails</div>', unsafe_allow_html=True)
-st.markdown('<div class="sub-title">One Trail at a Time - Explore the Beauty of North East India</div>', unsafe_allow_html=True)
+    if st.button("🗺️ Tourist Guide"):
+        st.switch_page("pages/tourist_guide.py")  # Link to tourist guide page
 
-# Feature Buttons
-st.markdown('<div class="feature-container">', unsafe_allow_html=True)
+    if st.button("🎁 Souvenirs"):
+        st.switch_page("pages/souvenirs.py")  # Link to souvenirs page
 
-features = [
-    ("Travel Itinerary", "travel_itenary.py"),
-    ("Tourist Attractions", "tourist.py"),
-    ("Weather Info", "weather.py"),
-    ("Group Planning", "group_planning.py"),
-    ("Chatbot Assistance", "chatbot.py"),
-    ("Travel Blog", "blog.py"),
-    ("Travel Trivia", "trivia.py"),
-    
-    ("Souvenir Guide", "souvenirs.py")
-]
+with col3:
+    if st.button("🌟 Recommendations"):
+        st.switch_page("pages/recommendations.py")  # Link to recommendations page
 
-for feature, file in features:
-    st.write(f"""
-        <a href="/{file}" target="_self">
-            <button class="button">{feature}</button>
-        </a>
-    """, unsafe_allow_html=True)
-
-st.markdown('</div>', unsafe_allow_html=True)
-
-# Footer
-st.write("---")
-st.write("🌏 Crafted with ❤️ for Travel Enthusiasts | Explore North East India")
+# Optional Footer
+st.markdown("---")
+st.write("🚀 Developed with ❤️ for travel enthusiasts")
 
