@@ -41,28 +41,6 @@ st.markdown(
         .header-buttons button:hover {
             background-color: #52796f;
         }
-        .card {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            text-align: center;
-            cursor: pointer;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-        }
-        .card h3 {
-            margin: 10px 0;
-            font-size: 20px;
-            color: #2f3e46;
-        }
-        .card p {
-            color: #555;
-            font-size: 14px;
-        }
     </style>
     """,
     unsafe_allow_html=True
@@ -76,7 +54,7 @@ with st.container():
         st.markdown(
             """
             <div class="title-container">
-                <img src="Dataset and Database/logo.png" class="header-logo">
+                <img src="assets/eastern_trails_logo.png" class="header-logo">
                 <span class="header-title">Eastern Trails</span>
             </div>
             """,
@@ -97,36 +75,30 @@ st.markdown("""
 ## Discover the Heart of NorthEast India, One Trail at a Time.
 """)
 
-st.markdown("---")
-
-# Section cards (responsive layout)
+# Section buttons (like cards)
 st.markdown("### Explore Our Features")
 
 col1, col2, col3 = st.columns(3)
 
-def card(icon, title, description, page):
-    if st.markdown(
-        f"""
-        <div class="card" onclick="window.location.href='/{page}'">
-            <h3>{icon} {title}</h3>
-            <p>{description}</p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    ):
-        st.switch_page(f"pages/{page}")
-
 with col1:
-    card("📅", "Travel Itinerary", "Plan your complete trip with customizable itineraries.", "travel_itinerary.py")
-    card("🤖", "Chat with TravelBot", "Get AI-powered recommendations and answers.", "chatbot.py")
+    if st.button("📅 Travel Itinerary"):
+        st.switch_page("pages/travel_itinerary.py")
+
+    if st.button("🤖 Chat with TravelBot"):
+        st.switch_page("pages/chatbot.py")
+
+    if st.button("🏅 Travel Trivia"):
+        st.switch_page("pages/trivia.py")
 
 with col2:
-    card("☀️", "Check Weather", "Stay informed with real-time weather updates.", "weather.py")
-    card("🗺️", "Tourist Guide", "Explore must-visit attractions and hidden gems.", "tourist_guide.py")
+    if st.button("☀️ Check Weather"):
+        st.switch_page("pages/weather.py")
 
-with col3:
-    card("🏅", "Travel Trivia", "Test your travel knowledge with fun quizzes.", "trivia.py")
-    card("🎁", "Souvenirs", "Find and shop for authentic regional souvenirs.", "souvenirs.py")
+    if st.button("🗺️ Tourist Guide"):
+        st.switch_page("pages/tourist_guide.py")
+
+    if st.button("🎁 Souvenirs"):
+        st.switch_page("pages/souvenirs.py")
 
 # Footer
 st.markdown("---")
