@@ -1,59 +1,46 @@
 import streamlit as st
 
-# Set page configuration
+# Set page config
 st.set_page_config(page_title="Eastern Trails", page_icon="🌄", layout="wide")
 
-# Custom CSS for a light, Northeast India–inspired theme
+# Custom CSS for styling with a light, Northeast India–inspired theme
 st.markdown(
     """
     <style>
       /* Overall background */
       body {
-         background-color: #E6F2E6;  /* Light earthy green */
+        background-color: #E6F2E6;  /* Light earthy green */
       }
       /* Header styling */
       .header {
-         background-color: #F5F5DC;  /* Off-white reminiscent of traditional textiles */
-         padding: 15px 20px;
-         border-bottom: 2px solid #ddd;
-         display: flex;
-         justify-content: space-between;
-         align-items: center;
+        background-color: #F5F5DC;  /* Off-white reminiscent of traditional textiles */
+        padding: 15px 20px;
+        border-bottom: 2px solid #ddd;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
       }
       .title-container {
-         display: flex;
-         align-items: center;
+        display: flex;
+        align-items: center;
       }
       .logo {
-         height: 60px;
+        height: 60px;
       }
       .title {
-         font-size: 32px;
-         font-weight: bold;
-         color: #2F3E46;
-         margin-left: 15px;
-      }
-      .auth-buttons button {
-         margin-left: 10px;
-         padding: 8px 15px;
-         background-color: #6A994E;  /* Deep natural green */
-         color: white;
-         border: none;
-         border-radius: 20px;
-         cursor: pointer;
-         font-weight: bold;
-      }
-      .auth-buttons button:hover {
-         background-color: #52796F;
+        font-size: 32px;
+        font-weight: bold;
+        color: #2F3E46;
+        margin-left: 15px;
       }
       /* Subtitle styling */
       .subtitle {
-         text-align: center;
-         font-size: 24px;
-         color: #2F3E46;
-         margin: 20px 0;
+        text-align: center;
+        font-size: 24px;
+        color: #2F3E46;
+        margin: 20px 0;
       }
-      /* Styling for feature cards using Streamlit buttons */
+      /* Styling for Streamlit buttons as cards */
       .stButton>button {
          font-size: 16px;
          height: 150px;
@@ -63,6 +50,7 @@ st.markdown(
          border-radius: 15px;
          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
          transition: transform 0.3s, box-shadow 0.3s;
+         margin-bottom: 20px;
          white-space: pre-line;
          text-align: center;
       }
@@ -75,38 +63,38 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# HEADER SECTION: Logo, Title, and Auth Buttons
+##############################
+# HEADER: Logo & Title Only #
+##############################
 with st.container():
-    col_header_left, col_header_right = st.columns([0.7, 0.3])
-    with col_header_left:
-        st.markdown(
-            """
+    # Create a single row for the header
+    st.markdown(
+        """
+        <div class="header">
             <div class="title-container">
                 <img src="Dataset and Database/eastern_trails_logo.png" class="logo">
                 <span class="title">Eastern Trails</span>
             </div>
-            """,
-            unsafe_allow_html=True
-        )
-    with col_header_right:
-        col_signin, col_signup = st.columns(2)
-        with col_signin:
-            if st.button("Sign In", key="signin"):
-                st.info("Sign In clicked!")
-        with col_signup:
-            if st.button("Sign Up", key="signup"):
-                st.info("Sign Up clicked!")
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 # SUBTITLE
 st.markdown('<div class="subtitle">Discover the Heart of NorthEast India, One Trail at a Time.</div>', unsafe_allow_html=True)
 st.markdown("---")
 
-# FEATURE CARDS SECTION
+############################################
+# Feature Cards (Including Sign In/Sign Up)#
+############################################
 st.markdown("### Explore Our Features")
 
-# Define card data as a list of tuples: (Icon, Title, Description, Page filename)
+# Card data: (Icon, Title, Description, Key)
+# For "Sign In" and "Sign Up", we won't do page navigation; we'll just show a message.
 cards = [
-    ("📅", "Travel Itinerary", "Plan your complete trip with customizable itineraries.", "travel_itinerary.py"),
+    ("🔑", "Sign In", "Access your account or manage your trips.", "signin"),
+    ("🆕", "Sign Up", "Create a new account to plan your adventures!", "signup"),
+    ("📅", "Travel Itinerary", "Plan your trip with customizable itineraries.", "travel_itinerary.py"),
     ("🤖", "Chatbot", "Get AI-powered travel recommendations.", "chatbot.py"),
     ("🏅", "Trivia", "Test your travel knowledge with fun quizzes.", "trivia.py"),
     ("☀️", "Weather", "Stay informed with real-time weather updates.", "weather.py"),
@@ -114,21 +102,27 @@ cards = [
     ("🎁", "Souvenirs", "Find and shop for authentic regional souvenirs.", "souvenirs.py"),
     ("👥", "Group Planning", "Plan trips with your friends.", "group_planning.py"),
     ("📝", "Blog", "Read travel stories and tips.", "blog.py"),
-    ("🎮", "Game", "Enjoy interactive travel games.", "game.py")
+    ("🎮", "Game", "Enjoy interactive travel games.", "game.py"),
 ]
 
-# Arrange cards in a 3x3 grid using st.columns(3)
+# We'll arrange them in rows of 3 columns each
 for i in range(0, len(cards), 3):
     cols = st.columns(3)
     for j, col in enumerate(cols):
-        index = i + j
-        if index < len(cards):
-            icon, title, description, page = cards[index]
-            # Format button label with icon, title, and description
+        idx = i + j
+        if idx < len(cards):
+            icon, title, description, page_key = cards[idx]
+            # Multiline label for the card
             button_label = f"{icon} {title}\n\n{description}"
             with col:
-                if st.button(button_label, key=title, help=f"Go to {title} page"):
-                    st.switch_page(f"pages/{page}")
+                # If it's "Sign In" or "Sign Up", show an info message, else switch page
+                if st.button(button_label, key=title):
+                    if page_key == "signin":
+                        st.info("Sign In clicked!")
+                    elif page_key == "signup":
+                        st.info("Sign Up clicked!")
+                    else:
+                        st.switch_page(f"pages/{page_key}")
 
 # FOOTER
 st.markdown("---")
