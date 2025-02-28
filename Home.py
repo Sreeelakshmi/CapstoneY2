@@ -100,7 +100,6 @@ with colB:
 with colC:
     st.page_link("pages/group_planning.py", label="👥 Group Planning")
     st.page_link("pages/blog.py", label="📝 Blog")
-    st.page_link("pages/game.py", label="🎮 Game")
 
 # Footer
 st.write("---")
