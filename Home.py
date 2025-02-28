@@ -9,49 +9,49 @@ st.markdown(
     <style>
       /* Overall background */
       body {
-        background-color: #E6F2E6;  /* Light earthy green */
+         background-color: #E6F2E6;  /* Light earthy green */
       }
       /* Header styling */
       .header {
-        background-color: #F5F5DC;  /* Off-white reminiscent of traditional textiles */
-        padding: 15px 20px;
-        border-bottom: 2px solid #ddd;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+         background-color: #F5F5DC;  /* Off-white reminiscent of traditional textiles */
+         padding: 15px 20px;
+         border-bottom: 2px solid #ddd;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
       }
-      .header .title-container {
-        display: flex;
-        align-items: center;
+      .title-container {
+         display: flex;
+         align-items: center;
       }
-      .header .logo {
-        height: 60px;
+      .logo {
+         height: 60px;
       }
-      .header .title {
-        font-size: 32px;
-        font-weight: bold;
-        color: #2F3E46;
-        margin-left: 15px;
+      .title {
+         font-size: 32px;
+         font-weight: bold;
+         color: #2F3E46;
+         margin-left: 15px;
       }
-      .header .auth-buttons button {
-        margin-left: 10px;
-        padding: 8px 15px;
-        background-color: #6A994E;  /* Deep natural green */
-        color: white;
-        border: none;
-        border-radius: 20px;
-        cursor: pointer;
-        font-weight: bold;
+      .auth-buttons button {
+         margin-left: 10px;
+         padding: 8px 15px;
+         background-color: #6A994E;  /* Deep natural green */
+         color: white;
+         border: none;
+         border-radius: 20px;
+         cursor: pointer;
+         font-weight: bold;
       }
-      .header .auth-buttons button:hover {
-        background-color: #52796F;
+      .auth-buttons button:hover {
+         background-color: #52796F;
       }
       /* Subtitle styling */
       .subtitle {
-        text-align: center;
-        font-size: 24px;
-        color: #2F3E46;
-        margin: 20px 0;
+         text-align: center;
+         font-size: 24px;
+         color: #2F3E46;
+         margin: 20px 0;
       }
       /* Styling for feature cards using Streamlit buttons */
       .stButton>button {
@@ -70,14 +70,6 @@ st.markdown(
          transform: translateY(-5px);
          box-shadow: 0 6px 15px rgba(0,0,0,0.2);
       }
-      /* Grid container for feature cards */
-      .card-grid {
-         display: flex;
-         flex-wrap: wrap;
-         justify-content: center;
-         gap: 20px;
-         margin: 20px;
-      }
     </style>
     """,
     unsafe_allow_html=True
@@ -90,18 +82,18 @@ with st.container():
         st.markdown(
             """
             <div class="title-container">
-              <img src="Dataset and Database/eastern_trails_logo.png" class="logo">
-              <span class="title">Eastern Trails</span>
+                <img src="Dataset and Database/eastern_trails_logo.png" class="logo">
+                <span class="title">Eastern Trails</span>
             </div>
             """,
             unsafe_allow_html=True
         )
     with col_header_right:
-        col_btn1, col_btn2 = st.columns(2)
-        with col_btn1:
+        col_signin, col_signup = st.columns(2)
+        with col_signin:
             if st.button("Sign In", key="signin"):
                 st.info("Sign In clicked!")
-        with col_btn2:
+        with col_signup:
             if st.button("Sign Up", key="signup"):
                 st.info("Sign Up clicked!")
 
@@ -125,13 +117,14 @@ cards = [
     ("🎮", "Game", "Enjoy interactive travel games.", "game.py")
 ]
 
-# Arrange cards in a 3x3 grid using a loop with st.columns(3)
+# Arrange cards in a 3x3 grid using st.columns(3)
 for i in range(0, len(cards), 3):
     cols = st.columns(3)
     for j, col in enumerate(cols):
         index = i + j
         if index < len(cards):
             icon, title, description, page = cards[index]
+            # Format button label with icon, title, and description
             button_label = f"{icon} {title}\n\n{description}"
             with col:
                 if st.button(button_label, key=title, help=f"Go to {title} page"):
