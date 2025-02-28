@@ -68,7 +68,7 @@ st.markdown("""
 # Top Bar with Logo and Sign In / Login
 col1, col2 = st.columns([0.7, 0.3])
 with col1:
-    st.image("Bown and Yellow Vintage Adventure logo (3).png", width=100)  # Logo you uploaded
+    st.image("Dataset and Database/logo.png", width=100)  # Logo you uploaded
 with col2:
     st.write("""
         <div class="top-bar">
