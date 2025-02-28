@@ -3,7 +3,7 @@ import streamlit as st
 # Set page config
 st.set_page_config(page_title="Eastern Trails", page_icon="🌄", layout="wide")
 
-# Custom CSS for styling
+# Custom CSS for styling with a light theme inspired by NorthEast India
 st.markdown(
     """
     <style>
@@ -36,7 +36,7 @@ st.markdown(
       .header .auth-buttons button {
         margin-left: 10px;
         padding: 8px 15px;
-        background-color: #6A994E;  /* Deep, natural green */
+        background-color: #6A994E;  /* Deep natural green */
         color: white;
         border: none;
         border-radius: 20px;
@@ -53,15 +53,10 @@ st.markdown(
         color: #2F3E46;
         margin: 20px 0;
       }
-      /* Card container */
-      .card-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-        margin: 20px;
-      }
       /* Card styling */
+      .card-link {
+        text-decoration: none;
+      }
       .card {
         background-color: #FFF8E7;  /* Soft, warm cream */
         width: 250px;
@@ -70,6 +65,7 @@ st.markdown(
         box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         text-align: center;
         transition: transform 0.3s, box-shadow 0.3s;
+        margin-bottom: 20px;
       }
       .card:hover {
         transform: translateY(-5px);
@@ -85,20 +81,24 @@ st.markdown(
         font-size: 14px;
         color: #555;
       }
-      a.card-link {
-        text-decoration: none;
+      /* Grid container for cards */
+      .card-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
       }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Header Section
+# Header Section: Logo, Title, Subtitle, and Auth Buttons
 st.markdown(
     """
     <div class="header">
       <div class="title-container">
-        <img src="Dataset and Database/logo.png" class="logo">
+        <img src="Dataset and Database/eastern_trails_logo.png" class="logo">
         <span class="title">Eastern Trails</span>
       </div>
       <div class="auth-buttons">
@@ -110,14 +110,11 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Subtitle
 st.markdown('<div class="subtitle">Discover the Heart of NorthEast India, One Trail at a Time.</div>', unsafe_allow_html=True)
 st.markdown("---")
 
 # Function to create a clickable card
 def clickable_card(icon, title, description, page):
-    # The href uses Streamlit's multipage routing format:
-    #   /?page=pages/<filename>
     card_html = f"""
     <a class="card-link" href="/?page=pages/{page}">
       <div class="card">
@@ -128,22 +125,30 @@ def clickable_card(icon, title, description, page):
     """
     st.markdown(card_html, unsafe_allow_html=True)
 
-# Cards Section
+# List of cards (9 total) - arranged in a 3x3 grid
+cards = [
+    ("📅", "Travel Itinerary", "Plan your complete trip with customizable itineraries.", "travel_itinerary.py"),
+    ("🤖", "Chatbot", "Get AI-powered travel recommendations.", "chatbot.py"),
+    ("🏅", "Trivia", "Test your travel knowledge with fun quizzes.", "trivia.py"),
+    ("☀️", "Weather", "Stay informed with real-time weather updates.", "weather.py"),
+    ("🗺️", "Tourist Guide", "Discover must-visit attractions and hidden gems.", "tourist.py"),
+    ("🎁", "Souvenirs", "Find and shop for authentic regional souvenirs.", "souvenirs.py"),
+    ("👥", "Group Planning", "Plan trips with your friends.", "group_planning.py"),
+    ("📝", "Blog", "Read travel stories and tips.", "blog.py"),
+    ("🎮", "Game", "Enjoy interactive travel games.", "game.py")
+]
+
 st.markdown("### Explore Our Features")
-st.markdown('<div class="card-container">', unsafe_allow_html=True)
+# Arrange cards in a 3x3 grid
+# We'll use a loop to create rows with 3 columns each.
+for i in range(0, len(cards), 3):
+    cols = st.columns(3)
+    for j, col in enumerate(cols):
+        index = i + j
+        if index < len(cards):
+            icon, title, description, page = cards[index]
+            with col:
+                clickable_card(icon, title, description, page)
 
-clickable_card("📅", "Travel Itinerary", "Plan your complete trip with customizable itineraries.", "travel_itinerary.py")
-clickable_card("🤖", "Chatbot", "Get AI-powered travel recommendations.", "chatbot.py")
-clickable_card("🏅", "Trivia", "Test your travel knowledge with fun quizzes.", "trivia.py")
-clickable_card("☀️", "Weather", "Stay informed with real-time weather updates.", "weather.py")
-clickable_card("🗺️", "Tourist Guide", "Discover must-visit attractions and hidden gems.", "tourist.py")
-clickable_card("🎁", "Souvenirs", "Find and shop for authentic regional souvenirs.", "souvenirs.py")
-clickable_card("👥", "Group Planning", "Plan trips with your friends.", "group_planning.py")
-clickable_card("📝", "Blog", "Read travel stories and tips.", "blog.py")
-clickable_card("🎮", "Game", "Enjoy interactive travel games.", "game.py")
-
-st.markdown('</div>', unsafe_allow_html=True)
-
-# Footer
 st.markdown("---")
 st.write("🚀 Developed with ❤️ for travel enthusiasts")
