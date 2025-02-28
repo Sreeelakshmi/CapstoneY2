@@ -1,12 +1,65 @@
 import streamlit as st
-import sys
 
 # Set page title and icon
-st.set_page_config(page_title="Travel Advisor", page_icon="🌍", layout="wide")
+st.set_page_config(page_title="Eastern Trails", page_icon="🌄", layout="wide")
 
-# Header
-st.title("🌍 Welcome to Your Travel Advisor")
-st.subheader("Plan your perfect trip with ease and fun!")
+# Custom CSS for styling the header
+st.markdown(
+    """
+    <style>
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #E6F2E6;
+            border-bottom: 2px solid #618264;
+        }
+        .logo {
+            height: 80px;
+        }
+        .button-container {
+            display: flex;
+            gap: 10px;
+        }
+        .header-button {
+            padding: 8px 15px;
+            background-color: #618264;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .header-button:hover {
+            background-color: #4E6B4F;
+        }
+    </style>
+    """, 
+    unsafe_allow_html=True
+)
+
+# Header Layout - Logo + Sign In/Sign Up
+st.markdown(
+    """
+    <div class="header-container">
+        <img src="https://raw.githubusercontent.com/user/repo/main/EasternTrailsLogo.png" class="logo">
+        <div class="button-container">
+            <form action="#" method="get">
+                <button class="header-button" type="button" onclick="alert('Sign In clicked!')">Sign In</button>
+            </form>
+            <form action="#" method="get">
+                <button class="header-button" type="button" onclick="alert('Sign Up clicked!')">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+# Main Title and Subtitle
+st.title("🌄 Eastern Trails")
+st.subheader("Discover the heart of NorthEast India, One Trail at a Time.")
 
 # Description
 st.write("""
@@ -14,59 +67,28 @@ Explore personalized recommendations, check the weather, get guided itineraries,
 Select a section below to begin your adventure.
 """)
 
-# Check Streamlit version for compatibility
-def is_switch_page_supported():
-    import streamlit
-    version = tuple(map(int, streamlit.__version__.split(".")))
-    return version >= (1, 18)
-
-# Navigation helper function
-def navigate_to_page(page_path):
-    if is_switch_page_supported():
-        try:
-            st.switch_page(page_path)
-        except Exception as e:
-            st.error(f"❌ Unable to switch page: {e}")
-    else:
-        st.error("⚠️ Your Streamlit version is too old for `switch_page()`. Please upgrade to 1.18 or newer.")
-
-# Explain expected folder structure (for debugging)
-st.info("""
-📂 Expected Folder Structure:
-- Home.py (this file)
-- pages/
-    - travel_itinerary.py
-    - chatbot.py
-    - trivia.py
-    - weather.py
-    - tourist_guide.py
-    - souvenirs.py
-Make sure this structure exists for navigation to work.
-""")
-
-# Create buttons/links to each module
+# Buttons for navigating to pages
 col1, col2, col3 = st.columns(3)
 
 with col1:
     if st.button("📅 Travel Itinerary"):
-        navigate_to_page("pages/travel_itinerary.py")
+        st.switch_page("pages/travel_itinerary.py")
 
     if st.button("🤖 Chat with TravelBot"):
-        navigate_to_page("pages/chatbot.py")
+        st.switch_page("pages/chatbot.py")
 
     if st.button("🏅 Travel Trivia"):
-        navigate_to_page("pages/trivia.py")
+        st.switch_page("pages/trivia.py")
 
 with col2:
     if st.button("☀️ Check Weather"):
-        navigate_to_page("pages/weather.py")
+        st.switch_page("pages/weather.py")
 
     if st.button("🗺️ Tourist Guide"):
-        navigate_to_page("pages/tourist_guide.py")
+        st.switch_page("pages/tourist_guide.py")
 
     if st.button("🎁 Souvenirs"):
-        navigate_to_page("pages/souvenirs.py")
+        st.switch_page("pages/souvenirs.py")
 
-# Optional Footer
 st.markdown("---")
 st.write("🚀 Developed with ❤️ for travel enthusiasts")
