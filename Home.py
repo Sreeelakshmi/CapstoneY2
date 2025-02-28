@@ -87,7 +87,7 @@ st.markdown(
 st.markdown(
     """
     <div class="header-container">
-        <img src="https://raw.githubusercontent.com/user/repo/main/EasternTrailsLogo.png" class="logo">
+        <img src="Dataset and Database/logo.png" class="logo">
         <div class="button-container">
             <button class="header-button" onclick="alert('Sign In clicked!')">Sign In</button>
             <button class="header-button" onclick="alert('Sign Up clicked!')">Sign Up</button>
