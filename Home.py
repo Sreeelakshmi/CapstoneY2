@@ -36,9 +36,7 @@ with col2:
     if st.button("🎁 Souvenirs"):
         st.switch_page("pages/souvenirs.py")  # Link to souvenirs page
 
-with col3:
-    if st.button("🌟 Recommendations"):
-        st.switch_page("pages/recommendations.py")  # Link to recommendations page
+
 
 # Optional Footer
 st.markdown("---")
