@@ -7,6 +7,7 @@ st.set_page_config(page_title="Eastern Trails", page_icon="🌄", layout="wide")
 st.markdown(
     """
     <style>
+        /* Header styling */
         .header-container {
             display: flex;
             justify-content: space-between;
@@ -41,6 +42,11 @@ st.markdown(
         .header-buttons button:hover {
             background-color: #52796f;
         }
+
+        /* Subtitle */
+        h2, h3 {
+            color: #2f3e46;
+        }
     </style>
     """,
     unsafe_allow_html=True
@@ -51,6 +57,7 @@ with st.container():
     col1, col2 = st.columns([0.7, 0.3])
 
     with col1:
+        # Display the logo and title
         st.markdown(
             """
             <div class="title-container">
@@ -62,39 +69,39 @@ with st.container():
         )
 
     with col2:
+        # Sign In / Sign Up Buttons
         col_btn1, col_btn2 = st.columns([1, 1])
         with col_btn1:
             if st.button("Sign In"):
-                st.write("Sign In clicked!")
+                st.info("Sign In clicked!")
         with col_btn2:
             if st.button("Sign Up"):
-                st.write("Sign Up clicked!")
+                st.info("Sign Up clicked!")
 
 # Subtitle
-st.markdown("""
-## Discover the Heart of NorthEast India, One Trail at a Time.
-""")
+st.markdown("## Discover the Heart of NorthEast India, One Trail at a Time.")
+st.write("---")
 
-# Section Header
+# Section Buttons (Linking to pages/*.py)
 st.markdown("### Explore Our Features")
 
-# Page Navigation Buttons
-col1, col2, col3 = st.columns(3)
+colA, colB, colC = st.columns(3)
 
-with col1:
+with colA:
     st.page_link("pages/travel_itinerary.py", label="📅 Travel Itinerary")
-    st.page_link("pages/chatbot.py", label="🤖 Chat with TravelBot")
-    st.page_link("pages/trivia.py", label="🏅 Travel Trivia")
+    st.page_link("pages/chatbot.py", label="🤖 Chatbot")
+    st.page_link("pages/trivia.py", label="🏅 Trivia")
 
-with col2:
-    st.page_link("pages/weather.py", label="☀️ Check Weather")
+with colB:
+    st.page_link("pages/weather.py", label="☀️ Weather")
     st.page_link("pages/tourist.py", label="🗺️ Tourist Guide")
     st.page_link("pages/souvenirs.py", label="🎁 Souvenirs")
 
-with col3:
+with colC:
     st.page_link("pages/group_planning.py", label="👥 Group Planning")
-    st.page_link("pages/blog.py", label="📝 Travel Blog")
+    st.page_link("pages/blog.py", label="📝 Blog")
+    st.page_link("pages/game.py", label="🎮 Game")
 
 # Footer
-st.markdown("---")
+st.write("---")
 st.write("🚀 Developed with ❤️ for travel enthusiasts")
