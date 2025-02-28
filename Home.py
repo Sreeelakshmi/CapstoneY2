@@ -3,7 +3,7 @@ import streamlit as st
 # Set page config
 st.set_page_config(page_title="Eastern Trails", page_icon="🌄", layout="wide")
 
-# Custom CSS for a light Northeast India–inspired theme
+# Custom CSS for a light, Northeast India–inspired theme
 st.markdown(
     """
     <style>
@@ -53,8 +53,8 @@ st.markdown(
         color: #2F3E46;
         margin: 20px 0;
       }
-      /* Card button styling (using Streamlit buttons) */
-      .stButton>button.card-button {
+      /* Styling for Streamlit buttons as cards */
+      .stButton>button {
          font-size: 16px;
          height: 150px;
          width: 250px;
@@ -66,7 +66,7 @@ st.markdown(
          white-space: pre-line;
          text-align: center;
       }
-      .stButton>button.card-button:hover {
+      .stButton>button:hover {
          transform: translateY(-5px);
          box-shadow: 0 6px 15px rgba(0,0,0,0.2);
       }
@@ -83,7 +83,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Header Section: Logo, Title, Subtitle, and Auth Buttons
+# Header Section: Logo, Title, and Auth Buttons
 with st.container():
     col_header_left, col_header_right = st.columns([0.7, 0.3])
     with col_header_left:
@@ -111,6 +111,7 @@ st.markdown("---")
 
 # Feature Cards Section
 st.markdown("### Explore Our Features")
+
 # Define card data: (Icon, Title, Description, Page filename)
 cards = [
     ("📅", "Travel Itinerary", "Plan your complete trip with customizable itineraries.", "travel_itinerary.py"),
@@ -131,11 +132,9 @@ for i in range(0, len(cards), 3):
         index = i + j
         if index < len(cards):
             icon, title, description, page = cards[index]
-            # Combine icon, title, and description with line breaks
             button_label = f"{icon} {title}\n\n{description}"
             with col:
-                if st.button(button_label, key=title, help=f"Go to {title} page", 
-                             css_class="card-button"):
+                if st.button(button_label, key=title, help=f"Go to {title} page"):
                     st.switch_page(f"pages/{page}")
 
 # Footer
