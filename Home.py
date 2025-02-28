@@ -1,15 +1,19 @@
 import streamlit as st
 
-# Set page configuration
+# Set page config
 st.set_page_config(page_title="Eastern Trails", page_icon="🌄", layout="wide")
 
 # Custom CSS for a light, Northeast India–inspired theme
 st.markdown(
     """
     <style>
+      /* Overall background */
+      body {
+         background-color: #E6F2E6;  /* Light earthy green */
+      }
       /* Header styling */
       .header {
-         background-color: #F5F5DC;
+         background-color: #F5F5DC;  /* Off-white reminiscent of traditional textiles */
          padding: 15px 20px;
          border-bottom: 2px solid #ddd;
          display: flex;
@@ -35,12 +39,12 @@ st.markdown(
          color: #2F3E46;
          margin: 20px 0;
       }
-      /* Feature cards */
+      /* Styling for feature cards using Streamlit buttons */
       .stButton>button {
          font-size: 16px;
          height: 150px;
          width: 250px;
-         background-color: #FFF8E7;
+         background-color: #FFF8E7;  /* Soft warm cream */
          border: none;
          border-radius: 15px;
          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -83,7 +87,7 @@ st.markdown("---")
 ##############################
 st.markdown("### Explore Our Features")
 
-# Define card data: (Icon, Title, Description, Page filename)
+# Define the eight card data: (Icon, Title, Description, Page filename)
 cards = [
     ("📝", "Blog", "Read travel stories and tips.", "blog.py"),
     ("🤖", "Chatbot", "Get AI-powered travel recommendations.", "chatbot.py"),
