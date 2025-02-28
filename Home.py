@@ -1,51 +1,46 @@
 import streamlit as st
 
-# Set page config
+# Set page configuration
 st.set_page_config(page_title="Eastern Trails", page_icon="🌄", layout="wide")
 
 # Custom CSS for a light, Northeast India–inspired theme
 st.markdown(
     """
     <style>
-      /* Overall background */
-      body {
-        background-color: #E6F2E6;  /* Light earthy green */
-      }
       /* Header styling */
       .header {
-        background-color: #F5F5DC;  /* Off-white reminiscent of traditional textiles */
-        padding: 15px 20px;
-        border-bottom: 2px solid #ddd;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
+         background-color: #F5F5DC;
+         padding: 15px 20px;
+         border-bottom: 2px solid #ddd;
+         display: flex;
+         align-items: center;
       }
       .title-container {
-        display: flex;
-        align-items: center;
+         display: flex;
+         align-items: center;
       }
       .logo {
-        height: 60px;
+         height: 60px;
       }
       .title {
-        font-size: 32px;
-        font-weight: bold;
-        color: #2F3E46;
-        margin-left: 15px;
+         font-size: 32px;
+         font-weight: bold;
+         color: #2F3E46;
+         margin-left: 15px;
       }
       /* Subtitle styling */
       .subtitle {
-        text-align: center;
-        font-size: 24px;
-        color: #2F3E46;
-        margin: 20px 0;
+         text-align: center;
+         font-size: 24px;
+         color: #2F3E46;
+         margin: 20px 0;
       }
-      /* Styling for Streamlit buttons as cards */
+      /* Feature cards */
       .stButton>button {
          font-size: 16px;
          height: 150px;
          width: 250px;
-         background-color: #FFF8E7;  /* Soft warm cream */
+         background-color: #FFF8E7;
          border: none;
          border-radius: 15px;
          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -83,22 +78,21 @@ with st.container():
 st.markdown('<div class="subtitle">Discover the Heart of NorthEast India, One Trail at a Time.</div>', unsafe_allow_html=True)
 st.markdown("---")
 
-######################################
-# Feature Cards (No Sign In/Sign Up) #
-######################################
+##############################
+# FEATURE CARDS SECTION      #
+##############################
 st.markdown("### Explore Our Features")
 
-# Card data: (Icon, Title, Description, Page filename)
+# Define card data: (Icon, Title, Description, Page filename)
 cards = [
-    ("📅", "Travel Itinerary", "Plan your trip with customizable itineraries.", "travel_itinerary.py"),
+    ("📝", "Blog", "Read travel stories and tips.", "blog.py"),
     ("🤖", "Chatbot", "Get AI-powered travel recommendations.", "chatbot.py"),
+    ("👥", "Group Planning", "Plan trips with your friends.", "group_planning.py"),
+    ("🎁", "Souvenirs", "Find and shop for authentic regional souvenirs.", "souvenirs.py"),
+    ("🗺️", "Tourist Guide", "Discover must-visit attractions and hidden gems.", "tourist.py"),
+    ("📅", "Travel Itinerary", "Plan your trip with customizable itineraries.", "travel_itinerary.py"),
     ("🏅", "Trivia", "Test your travel knowledge with fun quizzes.", "trivia.py"),
     ("☀️", "Weather", "Stay informed with real-time weather updates.", "weather.py"),
-    ("🗺️", "Tourist Guide", "Discover must-visit attractions and hidden gems.", "tourist.py"),
-    ("🎁", "Souvenirs", "Find and shop for authentic regional souvenirs.", "souvenirs.py"),
-    ("👥", "Group Planning", "Plan trips with your friends.", "group_planning.py"),
-    ("📝", "Blog", "Read travel stories and tips.", "blog.py"),
-    ("🎮", "Game", "Enjoy interactive travel games.", "game.py")
 ]
 
 # Arrange cards in rows of 3 columns
