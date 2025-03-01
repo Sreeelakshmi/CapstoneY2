@@ -1,3 +1,4 @@
+
 import os
 import streamlit as st
 
@@ -7,13 +8,13 @@ st.set_page_config(page_title="Eastern Trails", page_icon="🌄", layout="wide")
 # Build the logo path using os.path.join
 logo_path = os.path.join("assets", "logo.png")
 
-# Custom CSS for a light, Northeast India–inspired theme with a light cream background and light brown text
+# Custom CSS for a light, Northeast India–inspired theme
 st.markdown(
     """
     <style>
-      /* Override default backgrounds */
-      html, body, .reportview-container, .main, .viewerContainer {
-         background-color: #FFFDD0 !important;  /* Light cream */
+      /* Overall background */
+      body {
+         background-color: #E6F2E6;  /* Light earthy green */
       }
       /* Header styling */
       .header {
@@ -22,13 +23,8 @@ st.markdown(
          border-bottom: 2px solid #ddd;
          display: flex;
          align-items: center;
-         justify-content: center;
-         position: relative;
       }
-      /* Center header content but nudge it left */
       .title-container {
-         position: absolute;
-         left: 20%;  /* Adjust this value to shift left */
          display: flex;
          align-items: center;
       }
@@ -38,14 +34,14 @@ st.markdown(
       .title {
          font-size: 32px;
          font-weight: bold;
-         color: #D2B48C;  /* Light brown */
+         color: #2F3E46;
          margin-left: 15px;
       }
       /* Subtitle styling */
       .subtitle {
          text-align: center;
          font-size: 24px;
-         color: #D2B48C;  /* Light brown */
+         color: #2F3E46;
          margin: 20px 0;
       }
       /* Styling for feature cards using Streamlit buttons */
@@ -61,7 +57,6 @@ st.markdown(
          margin-bottom: 20px;
          white-space: pre-line;
          text-align: center;
-         color: #D2B48C;  /* Light brown text */
       }
       .stButton>button:hover {
          transform: translateY(-5px);
@@ -76,17 +71,17 @@ st.markdown(
 # HEADER: Logo & Title  #
 #########################
 with st.container():
-    st.markdown(
-        f"""
-        <div class="header">
-            <div class="title-container">
-                <img src="{logo_path}" class="logo">
-                <span class="title">Eastern Trails</span>
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    # Use two columns: one for the logo and one for the title
+    col_logo, col_title = st.columns([0.15, 0.85])
+    with col_logo:
+        # Load and display the logo using st.image()
+        st.image(logo_path, width=60)
+    with col_title:
+      st.markdown(
+    "<div align='center'><h1 style='display:inline-block; margin-left:-200px; font-size:32px; font-weight:bold; color:#2F3E46;'>Eastern Trails</h1></div>",
+    unsafe_allow_html=True
+)
+
 
 # SUBTITLE
 st.markdown('<div class="subtitle">Discover the Heart of NorthEast India, One Trail at a Time.</div>', unsafe_allow_html=True)
