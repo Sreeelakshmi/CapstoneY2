@@ -1,3 +1,4 @@
+
 import os
 import streamlit as st
 
@@ -21,13 +22,11 @@ st.markdown(
          padding: 15px 20px;
          border-bottom: 2px solid #ddd;
          display: flex;
-         justify-content: center; /* Center the header content */
          align-items: center;
       }
       .title-container {
          display: flex;
          align-items: center;
-         justify-content: center;
       }
       .logo {
          height: 60px;
@@ -72,17 +71,13 @@ st.markdown(
 # HEADER: Logo & Title  #
 #########################
 with st.container():
-    st.markdown(
-        f"""
-        <div class="header">
-            <div class="title-container">
-                <img src="{logo_path}" class="logo">
-                <span class="title">Eastern Trails</span>
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    # Use two columns: one for the logo and one for the title
+    col_logo, col_title = st.columns([0.15, 0.85])
+    with col_logo:
+        # Load and display the logo using st.image()
+        st.image(logo_path, width=60)
+    with col_title:
+        st.markdown("<h1 style='font-size:32px; font-weight:bold; color:#2F3E46;'>Eastern Trails</h1>", unsafe_allow_html=True)
 
 # SUBTITLE
 st.markdown('<div class="subtitle">Discover the Heart of NorthEast India, One Trail at a Time.</div>', unsafe_allow_html=True)
