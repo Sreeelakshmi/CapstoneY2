@@ -1,5 +1,6 @@
 import streamlit as st
 import feedparser
+from bs4 import BeautifulSoup
 
 # Define states in Northeast India
 northeast_states = [
@@ -13,6 +14,13 @@ rss_feed_url = "https://nenow.in/feed"
 # Function to fetch and parse RSS feed
 def fetch_news():
     return feedparser.parse(rss_feed_url)
+
+# Function to remove <img> tags from the summary HTML
+def remove_images_from_summary(summary):
+    soup = BeautifulSoup(summary, 'html.parser')
+    for img in soup.find_all('img'):
+        img.decompose()
+    return str(soup)
 
 # Streamlit App Layout
 st.set_page_config(page_title="📰 Northeast India News", layout="wide")
@@ -36,7 +44,8 @@ if not news_feed.entries:
 else:
     for entry in news_feed.entries[:10]:  # Display top 10 headlines
         title = entry.title
-        summary = entry.summary
+        # Remove images from the summary before displaying
+        summary = remove_images_from_summary(entry.summary)
         
         st.markdown(f"""
             <div style='padding: 15px; border-radius: 10px; background-color: white; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); margin-bottom: 10px;'>
