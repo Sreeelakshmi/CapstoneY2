@@ -87,7 +87,7 @@ st.markdown("---")
 ##############################
 st.markdown("### Explore Our Features")
 
-# Define the eight card data: (Icon, Title, Description, Page filename)
+# Define the 9 card data
 cards = [
     ("📝", "Blog", "Read travel stories and tips.", "blog.py"),
     ("🤖", "Chatbot", "Get answers to general questions on each state", "chatbot.py"),
