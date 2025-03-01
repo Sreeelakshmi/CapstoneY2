@@ -1,7 +1,11 @@
+import os
 import streamlit as st
 
 # Set page config
 st.set_page_config(page_title="Eastern Trails", page_icon="🌄", layout="wide")
+
+# Build the logo path using os.path.join
+logo_path = os.path.join("assets", "logo.png")
 
 # Custom CSS for a light, Northeast India–inspired theme
 st.markdown(
@@ -66,17 +70,13 @@ st.markdown(
 # HEADER: Logo & Title  #
 #########################
 with st.container():
-    st.markdown(
-        """
-        <div class="header">
-            <div class="title-container">
-                <img src="assets/logo.png" class="logo">
-                <span class="title">Eastern Trails</span>
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    # Use two columns: one for the logo and one for the title
+    col_logo, col_title = st.columns([0.15, 0.85])
+    with col_logo:
+        # Load and display the logo using st.image()
+        st.image(logo_path, width=60)
+    with col_title:
+        st.markdown("<h1 style='font-size:32px; font-weight:bold; color:#2F3E46;'>Eastern Trails</h1>", unsafe_allow_html=True)
 
 # SUBTITLE
 st.markdown('<div class="subtitle">Discover the Heart of NorthEast India, One Trail at a Time.</div>', unsafe_allow_html=True)
@@ -87,10 +87,10 @@ st.markdown("---")
 ##############################
 st.markdown("### Explore Our Features")
 
-# Define the 9 card data
+# Define the card data: (Icon, Title, Description, Page filename)
 cards = [
     ("📝", "Blog", "Read travel stories and tips.", "blog.py"),
-    ("🤖", "Chatbot", "Get answers to general questions on each state", "chatbot.py"),
+    ("🤖", "Chatbot", "Get AI-powered travel recommendations.", "chatbot.py"),
     ("👥", "Group Planning", "Plan trips with your friends.", "group_planning.py"),
     ("🎁", "Souvenirs", "Find and shop for authentic regional souvenirs.", "souvenirs.py"),
     ("🗺️", "Tourist Guide", "Discover must-visit attractions and hidden gems.", "tourist.py"),
@@ -114,4 +114,4 @@ for i in range(0, len(cards), 3):
 
 # FOOTER
 st.markdown("---")
-st.write("Eastern Trails, Estd 2025")
+st.write("🚀 Developed with ❤️ for travel enthusiasts")
