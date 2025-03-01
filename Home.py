@@ -1,8 +1,7 @@
-
 import os
 import streamlit as st
 
-# Set page config
+# Set page configuration
 st.set_page_config(page_title="Eastern Trails", page_icon="🌄", layout="wide")
 
 # Build the logo path using os.path.join
@@ -22,9 +21,14 @@ st.markdown(
          padding: 15px 20px;
          border-bottom: 2px solid #ddd;
          display: flex;
+         justify-content: center;
          align-items: center;
+         position: relative;
       }
+      /* Center the header content but nudge it left */
       .title-container {
+         position: absolute;
+         left: 20%; /* Adjust this value to move the content toward the left */
          display: flex;
          align-items: center;
       }
@@ -71,17 +75,17 @@ st.markdown(
 # HEADER: Logo & Title  #
 #########################
 with st.container():
-    # Use two columns: one for the logo and one for the title
-    col_logo, col_title = st.columns([0.15, 0.85])
-    with col_logo:
-        # Load and display the logo using st.image()
-        st.image(logo_path, width=60)
-    with col_title:
-      st.markdown(
-    "<div align='center'><h1 style='display:inline-block; margin-left:-200px; font-size:32px; font-weight:bold; color:#2F3E46;'>Eastern Trails</h1></div>",
-    unsafe_allow_html=True
-)
-
+    st.markdown(
+        f"""
+        <div class="header">
+            <div class="title-container">
+                <img src="{logo_path}" class="logo">
+                <span class="title">Eastern Trails</span>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 # SUBTITLE
 st.markdown('<div class="subtitle">Discover the Heart of NorthEast India, One Trail at a Time.</div>', unsafe_allow_html=True)
@@ -94,7 +98,6 @@ st.markdown("### Explore Our Features")
 
 # Define the card data: (Icon, Title, Description, Page filename)
 cards = [
-    ("📝", "Recommendation system", "Tailored Travel Suggestions to Plan Your Perfect Trip", "stream.py"),
     ("📝", "Blog", "Read travel stories and tips.", "blog.py"),
     ("🤖", "Chatbot", "Get AI-powered travel recommendations.", "chatbot.py"),
     ("👥", "Group Planning", "Plan trips with your friends.", "group_planning.py"),
