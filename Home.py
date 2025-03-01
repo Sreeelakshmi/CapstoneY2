@@ -120,4 +120,4 @@ for i in range(0, len(cards), 3):
 
 # FOOTER
 st.markdown("---")
-st.write("🚀 Developed with ❤️ for travel enthusiasts")
+st.write("Eastern trails, Estd 2025")
