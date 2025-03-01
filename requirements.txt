@@ -9,4 +9,4 @@ mediapipe
 datetime
 opencv-python
 streamlit>=1.18
-
+bs4
