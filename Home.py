@@ -7,11 +7,11 @@ st.set_page_config(page_title="Eastern Trails", page_icon="🌄", layout="wide")
 # Build the logo path using os.path.join
 logo_path = os.path.join("assets", "logo.png")
 
-# Custom CSS for a light, Northeast India–inspired theme with enforced styles
+# Custom CSS for a light, Northeast India–inspired theme with a light cream background and light brown text
 st.markdown(
     """
     <style>
-      /* Override Streamlit background colors */
+      /* Override default backgrounds */
       html, body, .reportview-container, .main, .viewerContainer {
          background-color: #FFFDD0 !important;  /* Light cream */
       }
@@ -25,10 +25,10 @@ st.markdown(
          justify-content: center;
          position: relative;
       }
-      /* Center header content but nudge left slightly */
+      /* Center header content but nudge it left */
       .title-container {
          position: absolute;
-         left: 20%;
+         left: 20%;  /* Adjust this value to shift left */
          display: flex;
          align-items: center;
       }
