@@ -94,6 +94,7 @@ st.markdown("### Explore Our Features")
 
 # Define the card data: (Icon, Title, Description, Page filename)
 cards = [
+    ("📝", "Recommendation system", "Tailored Travel Suggestions to Plan Your Perfect Trip", "stream.py"),
     ("📝", "Blog", "Read travel stories and tips.", "blog.py"),
     ("🤖", "Chatbot", "Get AI-powered travel recommendations.", "chatbot.py"),
     ("👥", "Group Planning", "Plan trips with your friends.", "group_planning.py"),
