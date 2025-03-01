@@ -1,39 +1,49 @@
 import streamlit as st
-import requests
+import feedparser
 
-st.title("Travel Advisor News Updates")
+# Define states in Northeast India
+northeast_states = [
+    "arunachal-pradesh", "assam", "manipur", "meghalaya", 
+    "mizoram", "nagaland", "sikkim", "tripura"
+]
 
-@st.cache_data(show_spinner=False)
+# RSS feed source
+rss_feed_url = "https://nenow.in/feed"
+
+# Function to fetch and parse RSS feed
 def fetch_news():
-    # Replace with the actual API endpoint from Northeasern news website
-    api_url = 'https://api.northeasernnews.com/news'
-    try:
-        response = requests.get(api_url)
-        response.raise_for_status()  # Raise an error for bad status codes
-        data = response.json()
-        # Assuming the JSON response has an "articles" array
-        articles = data.get("articles", [])
-        return articles
-    except requests.RequestException as e:
-        st.error(f"Error fetching news: {e}")
-        return []
+    return feedparser.parse(rss_feed_url)
 
-articles = fetch_news()
+# Streamlit App Layout
+st.set_page_config(page_title="📰 Northeast India News", layout="wide")
 
-if not articles:
-    st.info("No news articles available at the moment.")
+st.markdown("<h1 style='text-align: center; color: #ff4b4b;'>📰 Northeast India News</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size: 18px;'>Stay updated with the latest headlines from Northeast India.</p>", unsafe_allow_html=True)
+
+# Sidebar for selecting state
+st.sidebar.title("🌍 Filters")
+selected_states = st.sidebar.multiselect(
+    "Choose states to display news from:",
+    options=northeast_states,
+    default=["assam", "manipur", "meghalaya"]  # Default selection
+)
+
+# Fetch and display headlines
+news_feed = fetch_news()
+
+if not news_feed.entries:
+    st.write("⚠️ No news available at the moment.")
 else:
-    for article in articles:
-        title = article.get("title", "No Title")
-        description = article.get("description", "")
-        url = article.get("url", "#")
-        image = article.get("image")
+    for entry in news_feed.entries[:10]:  # Display top 10 headlines
+        title = entry.title
+        summary = entry.summary
         
-        # Create a clickable title using Markdown
-        st.markdown(f"### [{title}]({url})")
-        st.write(description)
+        st.markdown(f"""
+            <div style='padding: 15px; border-radius: 10px; background-color: white; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); margin-bottom: 10px;'>
+                <h4>{title}</h4>
+                <p>{summary}</p>
+                <a style='color: #ff4b4b; font-weight: bold;' href="{entry.link}" target="_blank">🔗 Read More</a>
+            </div>
+        """, unsafe_allow_html=True)
         
-        if image:
-            st.image(image, caption=title, use_column_width=True)
-        
-        st.markdown("---")
+    st.markdown("---")
