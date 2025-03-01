@@ -97,6 +97,7 @@ cards = [
     ("📅", "Travel Itinerary", "Plan your trip with customizable itineraries.", "travel_itinerary.py"),
     ("🏅", "Trivia", "Test your travel knowledge with fun quizzes.", "trivia.py"),
     ("☀️", "Weather", "Stay informed with real-time weather updates.", "weather.py"),
+    ("📰", "News", "Get the latest travel news updates.", "news.py"),
 ]
 
 # Arrange cards in rows of 3 columns
