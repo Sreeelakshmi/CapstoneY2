@@ -3,17 +3,17 @@ import streamlit as st
 # Set page config
 st.set_page_config(page_title="Eastern Trails", page_icon="🌄", layout="wide")
 
-# Custom CSS for a light, Northeast India–inspired theme
+# Custom CSS for a light, Northeast India–inspired theme with enforced styles
 st.markdown(
     """
     <style>
       /* Overall background */
       body {
-         background-color: #E6F2E6;  /* Light earthy green */
+         background-color: #E6F2E6;
       }
       /* Header styling */
       .header {
-         background-color: #F5F5DC;  /* Off-white reminiscent of traditional textiles */
+         background-color: #F5F5DC;
          padding: 15px 20px;
          border-bottom: 2px solid #ddd;
          display: flex;
@@ -40,22 +40,22 @@ st.markdown(
          margin: 20px 0;
       }
       /* Styling for feature cards using Streamlit buttons */
-      .stButton>button {
-         font-size: 16px;
-         height: 150px;
-         width: 250px;
-         background-color: #FFF8E7;  /* Soft warm cream */
-         border: none;
-         border-radius: 15px;
-         box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-         transition: transform 0.3s, box-shadow 0.3s;
-         margin-bottom: 20px;
-         white-space: pre-line;
-         text-align: center;
+      .stButton > button {
+         font-size: 16px !important;
+         height: 150px !important;
+         width: 250px !important;
+         background-color: #FFF8E7 !important;  /* Soft warm cream */
+         border: none !important;
+         border-radius: 15px !important;
+         box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
+         transition: transform 0.3s, box-shadow 0.3s !important;
+         margin-bottom: 20px !important;
+         white-space: pre-line !important;
+         text-align: center !important;
       }
-      .stButton>button:hover {
-         transform: translateY(-5px);
-         box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      .stButton > button:hover {
+         transform: translateY(-5px) !important;
+         box-shadow: 0 6px 15px rgba(0,0,0,0.2) !important;
       }
     </style>
     """,
