@@ -78,7 +78,7 @@ with st.container():
         st.image(logo_path, width=60)
     with col_title:
       st.markdown(
-    "<div align='center'><h1 style='display:inline-block; margin-left:-50px; font-size:32px; font-weight:bold; color:#2F3E46;'>Eastern Trails</h1></div>",
+    "<div align='center'><h1 style='display:inline-block; margin-left:-400px; font-size:32px; font-weight:bold; color:#2F3E46;'>Eastern Trails</h1></div>",
     unsafe_allow_html=True
 )
 
