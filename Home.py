@@ -7,13 +7,13 @@ st.set_page_config(page_title="Eastern Trails", page_icon="🌄", layout="wide")
 # Build the logo path using os.path.join
 logo_path = os.path.join("assets", "logo.png")
 
-# Custom CSS for a light, Northeast India–inspired theme with updated colors
+# Custom CSS for a light, Northeast India–inspired theme with enforced styles
 st.markdown(
     """
     <style>
-      /* Overall background */
-      body {
-         background-color: #FFFDD0;  /* Light cream */
+      /* Override Streamlit background colors */
+      html, body, .reportview-container, .main, .viewerContainer {
+         background-color: #FFFDD0 !important;  /* Light cream */
       }
       /* Header styling */
       .header {
@@ -22,8 +22,13 @@ st.markdown(
          border-bottom: 2px solid #ddd;
          display: flex;
          align-items: center;
+         justify-content: center;
+         position: relative;
       }
+      /* Center header content but nudge left slightly */
       .title-container {
+         position: absolute;
+         left: 20%;
          display: flex;
          align-items: center;
       }
@@ -71,16 +76,17 @@ st.markdown(
 # HEADER: Logo & Title  #
 #########################
 with st.container():
-    # Use two columns: one for the logo and one for the title
-    col_logo, col_title = st.columns([0.15, 0.85])
-    with col_logo:
-        # Load and display the logo using st.image()
-        st.image(logo_path, width=60)
-    with col_title:
-        st.markdown(
-            "<div align='center'><h1 style='display:inline-block; margin-left:-200px; font-size:32px; font-weight:bold; color:#D2B48C;'>Eastern Trails</h1></div>",
-            unsafe_allow_html=True
-        )
+    st.markdown(
+        f"""
+        <div class="header">
+            <div class="title-container">
+                <img src="{logo_path}" class="logo">
+                <span class="title">Eastern Trails</span>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 # SUBTITLE
 st.markdown('<div class="subtitle">Discover the Heart of NorthEast India, One Trail at a Time.</div>', unsafe_allow_html=True)
