@@ -3,7 +3,7 @@ import streamlit as st
 # Set page config
 st.set_page_config(page_title="Eastern Trails", page_icon="🌄", layout="wide")
 
-# Custom CSS for a light, Northeast India–inspired theme with enforced styles
+# Custom CSS
 st.markdown(
     """
     <style>
@@ -36,7 +36,7 @@ st.markdown(
          color: #2F3E46;
          margin: 20px 0;
       }
-      /* Custom card styling */
+      /* Card styling */
       .card {
          font-size: 16px;
          height: 150px;
@@ -68,9 +68,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-#########################
-# HEADER: Logo & Title  #
-#########################
+# Header
 with st.container():
     st.markdown(
         """
@@ -84,13 +82,12 @@ with st.container():
         unsafe_allow_html=True
     )
 
-# SUBTITLE
+# Subtitle
 st.markdown('<div class="subtitle">Discover the Heart of NorthEast India, One Trail at a Time.</div>', unsafe_allow_html=True)
 st.markdown("---")
 
 st.markdown("### Explore Our Features")
 
-# Define the nine card data: (Icon, Title, Description, Page filename)
 cards = [
     ("📝", "Blog", "Read travel stories and tips.", "blog.py"),
     ("🤖", "Chatbot", "Get AI-powered travel recommendations.", "chatbot.py"),
@@ -103,19 +100,19 @@ cards = [
     ("📰", "News", "Get the latest travel news updates.", "news.py"),
 ]
 
-# Arrange cards in rows of 3 columns using st.columns and custom HTML
 for i in range(0, len(cards), 3):
     cols = st.columns(3)
     for j, col in enumerate(cols):
         idx = i + j
         if idx < len(cards):
             icon, title, description, page = cards[idx]
-            # Build card HTML with an onclick handler for navigation
             card_html = f"""
-            <div class="card" onclick="window.location.href='pages/{page}'">
-                <div style="font-size: 20px;">{icon}</div>
-                <div style="font-weight: bold; margin-top: 10px;">{title}</div>
-                <div style="font-size: 14px; margin-top: 10px;">{description}</div>
+            <div class="card">
+                <a href="/?page=pages/{page}" target="_self">
+                    <div style="font-size: 20px;">{icon}</div>
+                    <div style="font-weight: bold; margin-top: 10px;">{title}</div>
+                    <div style="font-size: 14px; margin-top: 10px;">{description}</div>
+                </a>
             </div>
             """
             with col:
