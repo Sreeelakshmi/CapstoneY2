@@ -77,7 +77,10 @@ with st.container():
         # Load and display the logo using st.image()
         st.image(logo_path, width=60)
     with col_title:
-        st.markdown("<h1 style='font-size:32px; font-weight:bold; color:#2F3E46;'>Eastern Trails</h1>", unsafe_allow_html=True)
+        st.markdown(
+    "<div align='center'><h1 style='font-size:32px; font-weight:bold; color:#2F3E46;'>Eastern Trails</h1></div>", 
+    unsafe_allow_html=True
+)
 
 # SUBTITLE
 st.markdown('<div class="subtitle">Discover the Heart of NorthEast India, One Trail at a Time.</div>', unsafe_allow_html=True)
