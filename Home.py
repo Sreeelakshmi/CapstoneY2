@@ -75,7 +75,7 @@ with st.container():
         """
         <div class="header">
             <div class="title-container">
-                
+                <!-- Updated logo path: assets/logo.png -->
                 <img src="assets/logo.png" class="logo">
                 <span class="title">Eastern Trails</span>
             </div>
@@ -83,7 +83,6 @@ with st.container():
         """,
         unsafe_allow_html=True
     )
-
 # SUBTITLE
 st.markdown('<div class="subtitle">Discover the Heart of NorthEast India, One Trail at a Time.</div>', unsafe_allow_html=True)
 st.markdown("---")
