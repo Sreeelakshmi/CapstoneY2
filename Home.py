@@ -75,7 +75,7 @@ with st.container():
         """
         <div class="header">
             <div class="title-container">
-                <!-- Updated path from 'Dataset and Database/logo.png' to 'assets/logo.png' -->
+                
                 <img src="assets/logo.png" class="logo">
                 <span class="title">Eastern Trails</span>
             </div>
