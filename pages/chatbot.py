@@ -1,29 +1,25 @@
-import base64
+import google.generativeai as genai
+from google.generativeai.types import Content, Part, GenerateContentConfig
+from dotenv import load_dotenv
 import os
-from google import genai
-from google.genai import types
-from dotenv import load_dotenv  # only if using .env
 
-# Load environment variables (if using .env)
-load_dotenv()
+load_dotenv()  # If using .env file to load GOOGLE_API_KEY
 
 def generate():
     client = genai.Client(
-        api_key=os.environ.get("GOOGLE_API_KEY"),
+        api_key=os.getenv("GOOGLE_API_KEY")
     )
 
     model = "gemini-2.0-flash"
     contents = [
-        types.Content(
+        Content(
             role="user",
             parts=[
-                types.Part.from_text(
-                    text="""INSERT_INPUT_HERE"""
-                ),
+                Part.from_text("INSERT_INPUT_HERE"),
             ],
         ),
     ]
-    generate_content_config = types.GenerateContentConfig(
+    generate_content_config = GenerateContentConfig(
         temperature=1,
         top_p=0.95,
         top_k=40,
@@ -31,10 +27,11 @@ def generate():
         response_mime_type="text/plain",
     )
 
-    for chunk in client.models.generate_content_stream(
+    for chunk in client.generate_content(
         model=model,
         contents=contents,
-        config=generate_content_config,
+        generation_config=generate_content_config,
+        stream=True,
     ):
         print(chunk.text, end="")
 
