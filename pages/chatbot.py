@@ -1,7 +1,6 @@
 import google.generativeai as genai
-from google.generativeai.types import Content, Part, GenerateContentConfig
-from dotenv import load_dotenv
 import os
+from dotenv import load_dotenv
 
 load_dotenv()  # If using .env file to load GOOGLE_API_KEY
 
