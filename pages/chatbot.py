@@ -13,7 +13,12 @@ genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 def generate(prompt):
     model = genai.GenerativeModel("gemini-1.5-flash")
 
-    response = model.generate_content(f"You are a helpful travel advisor specializing in Northeast India. Your name is Eastern Trails Bot. Please provide engaging, friendly, and expert advice. User's question: {prompt}")
+    response = model.generate_content(
+        f"You are 'Eastern Trails Bot', an expert travel advisor specializing in Northeast India. "
+        f"Please provide friendly, expert travel advice about Northeast India, including places to visit, "
+        f"cultural experiences, local cuisine, transportation options, and tips for travelers. "
+        f"User's question: {prompt}"
+    )
 
     return response.text
 
@@ -50,16 +55,15 @@ st.markdown("""
     .bot-bubble {
         background-color: #fff3cd;
     }
-    .header-image {
-        width: 100%;
-        border-radius: 10px;
-        margin-bottom: 15px;
-    }
     </style>
 """, unsafe_allow_html=True)
 
-# Header with optional image
-st.image("https://www.tourmyindia.com/states/northeast-india/images/north-east-india-tourism.jpg", caption="Explore Northeast India with Eastern Trails", use_column_width=True)
+# Header with image (updated with use_container_width)
+st.image(
+    "https://www.tourmyindia.com/states/northeast-india/images/north-east-india-tourism.jpg",
+    caption="Explore Northeast India with Eastern Trails",
+    use_container_width=True
+)
 
 # App Title and Introduction
 st.title("🏞️ Eastern Trails Travel Advisor")
@@ -86,4 +90,3 @@ if st.button("✨ Get Travel Tips"):
 # Footer
 st.markdown("---")
 st.caption("🌄 Powered by Gemini AI | Brought to you by **Eastern Trails** - Your Travel Companion for Northeast India")
-
