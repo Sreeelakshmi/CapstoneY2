@@ -2,11 +2,14 @@ import base64
 import os
 from google import genai
 from google.genai import types
+from dotenv import load_dotenv  # only if using .env
 
+# Load environment variables (if using .env)
+load_dotenv()
 
 def generate():
     client = genai.Client(
-        api_key=os.environ.get("AIzaSyDNwIxW9HofySRWVYeAjkXTA5by_5LF-j0"),
+        api_key=os.environ.get("GOOGLE_API_KEY"),
     )
 
     model = "gemini-2.0-flash"
@@ -34,6 +37,5 @@ def generate():
         config=generate_content_config,
     ):
         print(chunk.text, end="")
-
 
 generate()
