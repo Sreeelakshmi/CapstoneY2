@@ -1,3 +1,4 @@
+import streamlit as st
 import google.generativeai as genai
 import os
 from dotenv import load_dotenv
@@ -5,13 +6,24 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+# Configure Gemini API key
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-def generate():
+def generate(prompt):
     model = genai.GenerativeModel("gemini-1.5-flash")
 
-    response = model.generate_content("INSERT_INPUT_HERE")
+    response = model.generate_content(prompt)
 
-    print(response.text)
+    return response.text
 
-generate()
+st.title("Gemini Chatbot")
+
+user_input = st.text_area("Enter your prompt:")
+
+if st.button("Generate"):
+    if user_input.strip():
+        with st.spinner("Generating response..."):
+            response = generate(user_input)
+        st.write(response)
+    else:
+        st.warning("Please enter a prompt.")
