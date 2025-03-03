@@ -11,4 +11,5 @@ opencv-python
 streamlit>=1.18
 bs4
 google-generativeai==0.5.2
+python-dotenv==1.0.0
 
