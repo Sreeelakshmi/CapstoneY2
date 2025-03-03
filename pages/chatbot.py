@@ -13,21 +13,21 @@ genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 def generate(prompt):
     model = genai.GenerativeModel("gemini-1.5-flash")
 
-    response = model.generate_content(prompt)
+    response = model.generate_content(f"You are a helpful travel advisor specializing in Northeast India. Your name is Eastern Trails Bot. Please provide engaging, friendly, and expert advice. User's question: {prompt}")
 
     return response.text
 
 # Set page config for better UI
-st.set_page_config(page_title="Gemini Chatbot", page_icon="🤖", layout="centered")
+st.set_page_config(page_title="Eastern Trails Travel Advisor", page_icon="🏞️", layout="centered")
 
-# Custom CSS for better styling
+# Custom CSS for travel theme
 st.markdown("""
     <style>
     .main {
-        background-color: #f0f2f6;
+        background-color: #f0f7ff;
     }
     .stTextArea textarea {
-        background-color: #f9f9f9;
+        background-color: #ffffff;
         border-radius: 10px;
         padding: 10px;
         font-size: 16px;
@@ -40,7 +40,7 @@ st.markdown("""
         padding: 10px 20px;
     }
     .chat-bubble {
-        background-color: #f1f1f1;
+        background-color: #e6f7ff;
         padding: 15px;
         border-radius: 10px;
         margin-top: 10px;
@@ -48,34 +48,42 @@ st.markdown("""
         box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     }
     .bot-bubble {
-        background-color: #dbe8ff;
+        background-color: #fff3cd;
+    }
+    .header-image {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 15px;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# App Header
-st.title("🤖 Gemini AI Chatbot")
-st.write("Ask me anything and I'll respond using Google's **Gemini 1.5 Flash** model.")
+# Header with optional image
+st.image("https://www.tourmyindia.com/states/northeast-india/images/north-east-india-tourism.jpg", caption="Explore Northeast India with Eastern Trails", use_column_width=True)
+
+# App Title and Introduction
+st.title("🏞️ Eastern Trails Travel Advisor")
+st.write("Welcome to **Eastern Trails**, your personal travel guide for exploring the breathtaking destinations of **Northeast India**. From the misty hills of Meghalaya to the vibrant culture of Assam, I'm here to help you plan your adventure!")
 
 # User Input
-user_input = st.text_area("💬 Your Prompt:", height=100)
+user_input = st.text_area("🌏 Ask me anything about traveling in Northeast India:", height=100, placeholder="Where should I visit in Meghalaya?")
 
 # Chatbot Response Section
-if st.button("✨ Generate Response"):
+if st.button("✨ Get Travel Tips"):
     if user_input.strip():
-        with st.spinner("🔎 Generating response... Please wait"):
+        with st.spinner("🔎 Finding the best recommendations..."):
             response = generate(user_input)
 
         # Display chatbot response in styled bubble
         st.markdown(f"""
         <div class="chat-bubble bot-bubble">
-            <strong>Gemini:</strong><br>{response}
+            <strong>Eastern Trails Bot:</strong><br>{response}
         </div>
         """, unsafe_allow_html=True)
     else:
-        st.warning("⚠️ Please enter a prompt before generating.")
+        st.warning("⚠️ Please enter your question or travel query.")
 
 # Footer
 st.markdown("---")
-st.caption("🤖 Powered by Google's Gemini API | Built with ❤️ using Streamlit")
+st.caption("🌄 Powered by Gemini AI | Brought to you by **Eastern Trails** - Your Travel Companion for Northeast India")
 
